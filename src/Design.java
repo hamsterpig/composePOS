@@ -25,6 +25,7 @@ public class Design extends FrameD implements ActionListener{
 		pa_c_cManuField_cbtn4,pa_c_cManuField_cbtn5,pa_c_cManuField_cbtn6;
 	JPanel pa_c_cManuField_cbtn1_c, pa_c_cManuField_cbtn1_w, pa_c_cManuField_cbtn1_e, //btn1 S N C E W
 		pa_c_cManuField_cbtn1_n, pa_c_cManuField_cbtn1_s;
+	JPanel pbtn02_s, pbtn02_n, pbtn02_c, pbtn02_w, pbtn02_e;
 	
 	JLabel lbLogo, lbLogin, lbInformation;
 	JLabel lbID, lbPass;
@@ -198,8 +199,8 @@ public class Design extends FrameD implements ActionListener{
 		pa_c_cManuField_cbtn5.setVisible(false);
 		pa_c_cManuField_cbtn6.setVisible(false);
 		
-		pa_c_cManuField_cbtn1.add(new JButton("버튼 1"));
-		pa_c_cManuField_cbtn2.add(new JButton("버튼 2"));
+		//pa_c_cManuField_cbtn1.add(new JButton("버튼 1"));
+		//pa_c_cManuField_cbtn2.add(new JButton("버튼 3"));
 		pa_c_cManuField_cbtn3.add(new JButton("버튼 3"));
 		pa_c_cManuField_cbtn4.add(new JButton("버튼 4"));
 		pa_c_cManuField_cbtn5.add(new JButton("버튼 5"));
@@ -266,6 +267,20 @@ public class Design extends FrameD implements ActionListener{
 		pbtn1_Line03.add(tx1_Period);
 		pbtn1_Line04.add(lb1_Location);
 		pbtn1_Line04.add(tx1_Location);
+		
+		
+		//pa_c_cManuField_cbtn2.add(new JButton("버튼 2"));
+		pbtn02_s = new JPanel();
+		pbtn02_n = new JPanel();
+		pbtn02_c = new JPanel();
+		pbtn02_w = new JPanel();
+		pbtn02_e = new JPanel();
+		pa_c_cManuField_cbtn2.setLayout(new BorderLayout());
+		pa_c_cManuField_cbtn2.add(pbtn02_s, BorderLayout.PAGE_END);
+		pa_c_cManuField_cbtn2.add(pbtn02_n, BorderLayout.PAGE_START);
+		pa_c_cManuField_cbtn2.add(pbtn02_c, BorderLayout.CENTER);
+		pa_c_cManuField_cbtn2.add(pbtn02_w, BorderLayout.LINE_END);
+		pa_c_cManuField_cbtn2.add(pbtn02_e, BorderLayout.LINE_START);
 		
 		pack();
 		setLocationRelativeTo(null);
