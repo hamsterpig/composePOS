@@ -11,13 +11,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 
 public class Design extends FrameD implements ActionListener{
 	JButton btnLogin, btnLogout, btn1, btn2, btn3, btn4, btn5, btn6;
+	JButton btnMenu[];
 	
 	JPanel pa_c_eMenuBar, pa_c_cManuField, pa_c_eMenuBar_List, pLogo;
 	JPanel pa_c_cLogin;
@@ -25,16 +27,21 @@ public class Design extends FrameD implements ActionListener{
 		pa_c_cManuField_cbtn4,pa_c_cManuField_cbtn5,pa_c_cManuField_cbtn6;
 	JPanel pa_c_cManuField_cbtn1_c, pa_c_cManuField_cbtn1_w, pa_c_cManuField_cbtn1_e, //btn1 S N C E W
 		pa_c_cManuField_cbtn1_n, pa_c_cManuField_cbtn1_s;
-	JPanel pbtn02_s, pbtn02_n, pbtn02_c, pbtn02_w, pbtn02_e;
+	JPanel pbtn02_s, pbtn02_n, pbtn02_c, pbtn02_w, pbtn02_e, pbtn02_nc;
 	
-	JLabel lbLogo, lbLogin, lbInformation;
-	JLabel lbID, lbPass;
+	JLabel lbLogo, lbLogin, lbInformation; // login
+	JLabel lbID, lbPass; // id pass
 	JLabel lb1_jumju, lb1_jumName, lb1_Period, lb1_Location;
+	JLabel lbTotal, lbDis, lbNeed, lbInput, lbOutput; // panel btn02 pad
 	
 	JTextField txID, txPass;
 	JTextField tx1_jumju, tx1_jumName, tx1_Period, tx1_Location;
+	JTextField txTotal, txDis, txNeed, txInput, txOutput; // panel btn02 pad
 	
 	ImageIcon imgLogo, imgLogin, imgInformation;
+	
+	JTable tableItem; // panel btn01
+	DefaultTableModel tm;
 	Design(){
 
 		
@@ -269,7 +276,8 @@ public class Design extends FrameD implements ActionListener{
 		pbtn1_Line04.add(tx1_Location);
 		
 		
-		//pa_c_cManuField_cbtn2.add(new JButton("버튼 2"));
+		//pa_c_cManuField_cbtn2.add(new JButton("버튼 2")); 
+		pbtn02_nc = new JPanel(new BorderLayout());
 		pbtn02_s = new JPanel();
 		pbtn02_n = new JPanel();
 		pbtn02_c = new JPanel();
@@ -277,10 +285,109 @@ public class Design extends FrameD implements ActionListener{
 		pbtn02_e = new JPanel();
 		pa_c_cManuField_cbtn2.setLayout(new BorderLayout());
 		pa_c_cManuField_cbtn2.add(pbtn02_s, BorderLayout.PAGE_END);
-		pa_c_cManuField_cbtn2.add(pbtn02_n, BorderLayout.PAGE_START);
-		pa_c_cManuField_cbtn2.add(pbtn02_c, BorderLayout.CENTER);
+		pbtn02_nc.add(pbtn02_n, BorderLayout.PAGE_START);
+		pbtn02_nc.add(pbtn02_c, BorderLayout.CENTER);
+		pa_c_cManuField_cbtn2.add(pbtn02_nc, BorderLayout.CENTER);
 		pa_c_cManuField_cbtn2.add(pbtn02_w, BorderLayout.LINE_END);
 		pa_c_cManuField_cbtn2.add(pbtn02_e, BorderLayout.LINE_START);
+		
+		JPanel pbtn02_n_Table = new JPanel(); // add Price Table
+		pbtn02_n.add(pbtn02_n_Table);
+		pbtn02_n.setLayout(new FlowLayout(FlowLayout.LEADING));
+		JPanel pbtn02_c_menu = new JPanel(); // add menu Button tab
+		pbtn02_c.add(pbtn02_c_menu);
+		pbtn02_c.setLayout(new FlowLayout(FlowLayout.LEADING));
+		pbtn02_c_menu.setPreferredSize(new Dimension(650, 350));
+		pbtn02_c_menu.setBackground(new Color(255,255,150));
+		
+		
+		String[] columnName = {"상품명","수량","정가","할인","금액"}; // table columnName
+		String[][] data = {};
+		tm = new DefaultTableModel(data, columnName);
+		tableItem = new JTable(tm);
+		JScrollPane tableSP = new JScrollPane(tableItem);
+		pbtn02_n_Table.add(tableSP);
+		tableItem.setPreferredSize(new Dimension(650,350));
+		tableSP.setPreferredSize(new Dimension(650,350));
+		pbtn02_n_Table.setPreferredSize(new Dimension(650,350));
+		
+		/*String testar[] = {"1","2","3","4","5"};
+		tm.addRow(testar);*/
+		
+		btnMenu = new JButton[16];
+		for(int i=0; i<btnMenu.length; i++){ // add menu Button Array
+			switch(i){
+				case 0: btnMenu[i] = new JButton("아메리카노 1500"); break;
+				case 1: btnMenu[i] = new JButton(); break;
+				default : btnMenu[i] = new JButton(); break;
+			}
+			btnMenu[i].setPreferredSize(new Dimension(150,80));
+			btnMenu[i].setBackground(new Color(255,255,183));
+			pbtn02_c_menu.add(btnMenu[i]);
+			btnMenu[i].addActionListener(this);
+		}
+		
+		
+		JPanel pad = new JPanel(new BorderLayout()); // panel btn02 pad
+		pbtn02_w.add(pad);
+		pad.setPreferredSize(new Dimension(300,780));
+		//pad.setBackground(new Color(255,153,153));
+		JPanel pad_n = new JPanel();
+		JPanel pad_c = new JPanel();
+		JPanel pad_s = new JPanel();
+		pad.add(pad_n, BorderLayout.PAGE_START);
+		pad.add(pad_c, BorderLayout.CENTER);
+		pad.add(pad_s, BorderLayout.PAGE_END);
+		pad_n.setPreferredSize(new Dimension(300,230));
+		pad_n.setBackground(new Color(255,153,153));
+		
+		lbTotal = new JLabel("총매출액");
+		lbDis = new JLabel("할인금액");
+		lbNeed = new JLabel("받을금액");
+		lbInput = new JLabel("받은금액");
+		lbOutput = new JLabel("거스름돈");
+		txTotal = new JTextField(16);
+		txDis = new JTextField(16);
+		txNeed = new JTextField(16);
+		txInput = new JTextField(16);
+		txOutput = new JTextField(16);
+		txTotal.setEnabled(false);
+		txDis.setEnabled(false);
+		txNeed.setEnabled(false);
+		txInput.setEnabled(false);
+		txOutput.setEnabled(false);
+		
+		JPanel pad_n_line01 = new JPanel();
+		JPanel pad_n_line02 = new JPanel();
+		JPanel pad_n_line03 = new JPanel();
+		JPanel pad_n_line04 = new JPanel();
+		JPanel pad_n_line05 = new JPanel();
+		
+		pad_n_line01.add(lbTotal);
+		pad_n_line01.add(txTotal);
+		pad_n_line02.add(lbDis);
+		pad_n_line02.add(txDis);
+		pad_n_line03.add(lbNeed);
+		pad_n_line03.add(txNeed);
+		pad_n_line04.add(lbInput);
+		pad_n_line04.add(txInput);
+		pad_n_line05.add(lbOutput);
+		pad_n_line05.add(txOutput);
+		pad_n_line01.setBackground(new Color(255,183,183));
+		pad_n_line02.setBackground(new Color(255,183,183));
+		pad_n_line03.setBackground(new Color(255,183,183));
+		pad_n_line04.setBackground(new Color(255,183,183));
+		pad_n_line05.setBackground(new Color(255,183,183));
+		
+		pad_n.add(pad_n_line01);
+		pad_n.add(pad_n_line02);
+		pad_n.add(pad_n_line03);
+		pad_n.add(pad_n_line04);
+		pad_n.add(pad_n_line05);
+		
+		
+		
+		// end panel btn02
 		
 		pack();
 		setLocationRelativeTo(null);
