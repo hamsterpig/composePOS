@@ -15,11 +15,17 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
-public class Panel_btn03 extends Panel_btn02{
+public class Main_Action extends Panel_btn06 implements ActionListener{
 
-	
-	Panel_btn03(){
-		
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try{
+			UIManager.setLookAndFeel
+			("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		}catch(Exception e){
+			System.out.println("ERROR");
+		}
+		new Panel_btn06();
 	}
 	
 

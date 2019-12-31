@@ -24,18 +24,4 @@ public class Panel_btn05 extends Panel_btn04{
 	
 	
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		try{
-			UIManager.setLookAndFeel
-			("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		}catch(Exception e){
-			System.out.println("ERROR");
-		}
-		new Panel_btn05();
-	}
-
-
-
-	
 }
