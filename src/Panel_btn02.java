@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -21,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class Panel_btn02 extends Panel_btn01{
 	JLabel lbTotal, lbDis, lbNeed, lbInput, lbOutput; // panel btn02 pad
 	
-	JButton btnNumKey[], btnEA, btnDisPer, btnDis, btnClear; // pad_n
+	JButton btnNumKey[], btnAllClear, btnDisPer, btnDis, btnClear; // pad_n
 	JButton btnCard, btnCash;
 	
 	JTextField txTotal, txDis, txNeed, txInput, txOutput, txStateFeild; // panel btn02 pad
@@ -123,6 +124,11 @@ public class Panel_btn02 extends Panel_btn01{
 		txNeed.setEnabled(false);
 		txInput.setEnabled(false);
 		txOutput.setEnabled(false);
+		txTotal.setText("0");
+		txDis.setText("0");
+		txNeed.setText("0");
+		txInput.setText("0");
+		txOutput.setText("0");
 		
 		txStateFeild = new JTextField();
 		txStateFeild.setEditable(false);
@@ -166,26 +172,31 @@ public class Panel_btn02 extends Panel_btn01{
 		pad_s.setBackground(new Color(255,255,204));
 		pad_s.setPreferredSize(new Dimension(250,250));
 		
-		btnEA = new JButton("C/A");
-		btnDisPer = new JButton("%/D");
-		btnDis = new JButton("N/D");
+		btnAllClear = new JButton("A/C");
+		btnDisPer = new JButton("N/D");
+		btnDis = new JButton("%/D");
 		btnClear = new JButton("Clear");
-		btnNumKey = new JButton[12];
+		btnNumKey = new JButton[11];
 		for(int i=0; i<btnNumKey.length; i++){ // NumKeyPad
 			btnNumKey[i] = new JButton();
 			btnNumKey[i].setText(Integer.toString(i));
 			btnNumKey[i].setPreferredSize(new Dimension(60,50));
 			btnNumKey[i].setBackground(new Color(255,153,102));
+			btnNumKey[i].addActionListener(this);
 		}
-		btnNumKey[11].setText("00");
+		btnNumKey[10].setText("00");
+		btnAllClear.addActionListener(this);
+		btnDisPer.addActionListener(this);
+		btnDis.addActionListener(this);
+		btnClear.addActionListener(this);
 		
 		
-		btnEA.setPreferredSize(new Dimension(60,50));
+		btnAllClear.setPreferredSize(new Dimension(60,50));
 		btnDisPer.setPreferredSize(new Dimension(60,50));
 		btnDis.setPreferredSize(new Dimension(60,50));
 		btnClear.setPreferredSize(new Dimension(126,50));
 		
-		btnEA.setBackground(new Color(255,100,100));
+		btnAllClear.setBackground(new Color(255,60,60));
 		btnDisPer.setBackground(new Color(255,100,100));
 		btnDis.setBackground(new Color(255,100,100));
 		btnClear.setBackground(new Color(255,60,60));
@@ -193,7 +204,7 @@ public class Panel_btn02 extends Panel_btn01{
 		pad_c.add(btnNumKey[7]); 
 		pad_c.add(btnNumKey[8]);
 		pad_c.add(btnNumKey[9]);
-		pad_c.add(btnEA);
+		pad_c.add(btnAllClear);
 		
 		pad_c.add(btnNumKey[4]); 
 		pad_c.add(btnNumKey[5]);
@@ -206,7 +217,7 @@ public class Panel_btn02 extends Panel_btn01{
 		pad_c.add(btnDis);
 		
 		pad_c.add(btnNumKey[0]); 
-		pad_c.add(btnNumKey[11]);
+		pad_c.add(btnNumKey[10]);
 		pad_c.add(btnClear);
 		//pad_c.add(arg0);
 		
@@ -282,8 +293,118 @@ public class Panel_btn02 extends Panel_btn01{
 			tableAddRow(btnMenu[14]);
 		} else if(e.getSource()==btnMenu[15]){ // add Menu Plus Price
 			tableAddRow(btnMenu[15]);
-		}
+		} else if(e.getSource()==btnNumKey[0]){ // input txStateFeild
+				input_TxStateFeild("0");
+		} else if(e.getSource()==btnNumKey[1]){ // input txStateFeild
+			input_TxStateFeild("1");
+		} else if(e.getSource()==btnNumKey[2]){ // input txStateFeild
+			input_TxStateFeild("2");
+		} else if(e.getSource()==btnNumKey[3]){ // input txStateFeild
+			input_TxStateFeild("3");
+		} else if(e.getSource()==btnNumKey[4]){ // input txStateFeild
+			input_TxStateFeild("4");
+		} else if(e.getSource()==btnNumKey[5]){ // input txStateFeild
+			input_TxStateFeild("5");
+		} else if(e.getSource()==btnNumKey[6]){ // input txStateFeild
+			input_TxStateFeild("6");
+		} else if(e.getSource()==btnNumKey[7]){ // input txStateFeild
+			input_TxStateFeild("7");
+		} else if(e.getSource()==btnNumKey[8]){ // input txStateFeild
+			input_TxStateFeild("8");
+		} else if(e.getSource()==btnNumKey[9]){ // input txStateFeild
+			input_TxStateFeild("9");
+		} else if(e.getSource()==btnNumKey[10]){ // input txStateFeild
+			input_TxStateFeild("00");
+		} else if(e.getSource()==btnAllClear){ // input txStateFeild
+			btnAllClear();
+		} else if(e.getSource()==btnDisPer){ // input txStateFeild
+			btnDisPer(txStateFeild.getText());
+		} else if(e.getSource()==btnDis){ // input txStateFeild
+			btnDis_Percent(txStateFeild.getText());
+		} else if(e.getSource()==btnClear){ // input txStateFeild
+			txStateFeild.setText("");
+		} 
 		
+	}
+
+	private void btnDis_Percent(String s) {
+		// TODO Auto-generated method stub
+		if(tm.getRowCount()==0){
+			// Dialog
+			txStateFeild.setText("");
+		} else{
+			if(!(txStateFeild.getText()).equals("") || !(txStateFeild.getText()).equals("0") || txStateFeild.getText()!=null){
+				int txTotalInt = 0;
+				int dis = 0;
+				int disPer = 0;
+				try{
+					txTotalInt = Integer.parseInt(txTotal.getText());
+					//disTemp = Integer.parseInt(txDis.getText());
+					dis = Integer.parseInt(s);
+				} catch(Exception e){
+					
+				}
+				disPer = -((txTotalInt*dis)/100); // +disTemp
+				dis = disPer;
+				
+				txDis.setText(Integer.toString(dis));
+				
+				txTotalInt = (txTotalInt + dis);
+				txNeed.setText(Integer.toString(txTotalInt));
+				
+				txStateFeild.setText("");
+			}
+		}
+	}
+
+	protected void btnAllClear() {
+		// TODO Auto-generated method stub
+		txTotal.setText("0");
+		txDis.setText("0");
+		txNeed.setText("0");
+		txInput.setText("0");
+		txOutput.setText("0");
+		txStateFeild.setText("");
+		while(tm.getRowCount()!=0){ // table row All delete
+			tm.removeRow(0);
+			revalidate();
+			repaint();
+		}
+	}
+
+	protected void btnDisPer(String s) { // total Update Because Dis Cange
+		// TODO Auto-generated method stub
+		if(tm.getRowCount()==0){
+			// Dialog
+			txStateFeild.setText("");
+		} else{
+			if(!(txStateFeild.getText()).equals("") || !(txStateFeild.getText()).equals("0") || txStateFeild.getText()!=null){
+				int disInt = 0;
+				int txTotalInt = 0;
+				int dis = 0;
+				
+				try{
+					txTotalInt = Integer.parseInt(txTotal.getText());
+					disInt =  Integer.parseInt(txDis.getText()); // Dis Price
+					dis = Integer.parseInt(s);
+				} catch(Exception e){
+					
+				}
+				disInt -= dis; // Total Price Update
+				txDis.setText(Integer.toString(disInt));
+				
+				txTotalInt = (txTotalInt + disInt); // Need Price
+				txNeed.setText(Integer.toString(txTotalInt));
+				
+				txStateFeild.setText("");
+			}
+		}
+	}
+
+	protected  void input_TxStateFeild(String s) {
+		// TODO Auto-generated method stub
+		String temp = txStateFeild.getText();
+		txStateFeild.setText(temp+s);
 	}
 
 	protected void tableAddRow(JButton btn) { // segment and add row 
@@ -344,13 +465,8 @@ public class Panel_btn02 extends Panel_btn01{
 		txTotalInt += Integer.parseInt(p); // Total Price Update
 		txTotal.setText(Integer.toString(txTotalInt));
 		
-		txDisInt += txDisInt; // Dis Price
-		txDis.setText(Integer.toString(txDisInt));
-		
-		txNeedInt = (txTotalInt-txDisInt);
+		txNeedInt = (txTotalInt+txDisInt); // Need Price
 		txNeed.setText(Integer.toString(txNeedInt));
-		
-		
 	}
 	
 	
