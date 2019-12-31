@@ -29,6 +29,8 @@ public class Panel_btn02 extends Panel_btn01{
 	JTable tableItem; // panel btn01
 	DefaultTableModel tm;
 	
+	Dialog_Cash dialog_cash;
+	
 	//int[] intEA = new int
 	Panel_btn02(){
 
@@ -237,6 +239,8 @@ public class Panel_btn02 extends Panel_btn01{
 		btnCash.setPreferredSize(new Dimension(140,120));
 		btnCard.setBackground(new Color(100,100,255));
 		btnCash.setBackground(new Color(120,255,120));
+		btnCard.addActionListener(this);
+		btnCash.addActionListener(this);
 		
 		pad_s.add(btnCard);
 		pad_s.add(btnCash);	
@@ -249,31 +253,48 @@ public class Panel_btn02 extends Panel_btn01{
 
 	protected void btnDis_Percent(String s) {
 		// TODO Auto-generated method stub
-		if(tm.getRowCount()==0){
-			// Dialog
+		int isTry=0;
+		try{
+			isTry = Integer.parseInt(s);
+		} catch(Exception e){
+			
+		}
+		if(isTry > 100){
+			lbMessage.setText("% 할인은 100을 초과할 수 없습니다.!!");
 			txStateFeild.setText("");
 		} else{
-			if(!(txStateFeild.getText()).equals("") || !(txStateFeild.getText()).equals("0") || txStateFeild.getText()!=null){
-				int txTotalInt = 0;
-				int dis = 0;
-				int disPer = 0;
-				try{
-					txTotalInt = Integer.parseInt(txTotal.getText());
-					//disTemp = Integer.parseInt(txDis.getText());
-					dis = Integer.parseInt(s);
-				} catch(Exception e){
-					
-				}
-				disPer = -((txTotalInt*dis)/100); // +disTemp
-				dis = disPer;
-				
-				txDis.setText(Integer.toString(dis));
-				
-				txTotalInt = (txTotalInt + dis);
-				txNeed.setText(Integer.toString(txTotalInt));
-				
+			if(tm.getRowCount()==0){
+				// Dialog
 				txStateFeild.setText("");
-				lbMessage.setText(s + "% 할인이 적용되었습니다.");
+				lbMessage.setText("할인을 적용할 상품이 없습니다.!!");
+			} else{
+				if(!(txStateFeild.getText()).equals("") || !(txStateFeild.getText()).equals("0") || txStateFeild.getText()!=null){
+					int txTotalInt = 0;
+					int dis = 0;
+					int disPer = 0;
+					try{
+						txTotalInt = Integer.parseInt(txTotal.getText());
+						//disTemp = Integer.parseInt(txDis.getText());
+						dis = Integer.parseInt(s);
+					} catch(Exception e){
+						
+					}
+					disPer = -((txTotalInt*dis)/100); // +disTemp
+					dis = disPer;
+					
+					txDis.setText(Integer.toString(dis));
+					
+					txTotalInt = (txTotalInt + dis);
+					txNeed.setText(Integer.toString(txTotalInt));
+					
+					txStateFeild.setText("");
+					
+					if(disPer < 0){
+						lbMessage.setText(s + "% 만큼 할인이 적용");
+					} else{
+						lbMessage.setText("먼저 적용할 할인 %을 입력하세요");
+					}
+				}
 			}
 		}
 	}
@@ -295,31 +316,51 @@ public class Panel_btn02 extends Panel_btn01{
 	}
 
 	protected void btnDisPer(String s) { // total Update Because Dis Cange
-		// TODO Auto-generated method stub
-		if(tm.getRowCount()==0){
-			// Dialog
+		// TODO Auto-generated method stub		
+		int txNeedTry = 0;
+		int isTry=0;
+		try{
+			txNeedTry = Integer.parseInt(txNeed.getText());
+			isTry = Integer.parseInt(s);
+		} catch(Exception e){
+			lbMessage.setText("할인을 적용할 수 없습니다.!!");
+		}
+		if(isTry > txNeedTry){
+			lbMessage.setText("할인 금액이 판매금액을 넘을 수 없습니다.!!");
 			txStateFeild.setText("");
 		} else{
-			if(!(txStateFeild.getText()).equals("") || !(txStateFeild.getText()).equals("0") || txStateFeild.getText()!=null){
-				int disInt = 0;
-				int txTotalInt = 0;
-				int dis = 0;
-				
-				try{
-					txTotalInt = Integer.parseInt(txTotal.getText());
-					disInt =  Integer.parseInt(txDis.getText()); // Dis Price
-					dis = Integer.parseInt(s);
-				} catch(Exception e){
+			if(tm.getRowCount()==0){
+				// Dialog
+				lbMessage.setText("할인을 적용할 상품이 없습니다.!!");
+				txStateFeild.setText("");
+			} else{
+				if(!(txStateFeild.getText()).equals("") || !(txStateFeild.getText()).equals("0") || txStateFeild.getText()!=null){
+					int disInt = 0;
+					int txTotalInt = 0;
+					int dis = 0;
+					
+					try{
+						txTotalInt = Integer.parseInt(txTotal.getText());
+						disInt =  Integer.parseInt(txDis.getText()); // Dis Price
+						dis = Integer.parseInt(s);
+					} catch(Exception e){
+						
+					}
+					disInt -= dis; // Total Price Update
+					txDis.setText(Integer.toString(disInt));
+					
+					txTotalInt = (txTotalInt + disInt); // Need Price
+					txNeed.setText(Integer.toString(txTotalInt));
+					
+					txStateFeild.setText("");
+					if(disInt < 0){
+						lbMessage.setText(s + " 만큼 할인이 적용(Total:"+(disInt*-1)+")");
+					} else{
+						lbMessage.setText("먼저 적용할 할인 금액을 입력하세요");
+					}
+					
 					
 				}
-				disInt -= dis; // Total Price Update
-				txDis.setText(Integer.toString(disInt));
-				
-				txTotalInt = (txTotalInt + disInt); // Need Price
-				txNeed.setText(Integer.toString(txTotalInt));
-				
-				txStateFeild.setText("");
-				lbMessage.setText(s + " 만큼 할인이 적용되었습니다.");
 			}
 		}
 	}
@@ -359,7 +400,7 @@ public class Panel_btn02 extends Panel_btn01{
 				tm.setValueAt(Integer.toString(priceUP), i, 4);
 				
 				txTotalUpdate(price);
-				lbMessage.setText(itemName + "가 추가되었습니다 ("+addEA+"개)");
+				lbMessage.setText(itemName + "가 추가되었습니다 ("+(addEA+1)+"개)");
 			} else{
 				
 			}
@@ -375,7 +416,7 @@ public class Panel_btn02 extends Panel_btn01{
 		}
 	}
 
-	protected void txTotalUpdate(String p) { // Total price, Dis price, input money
+	protected void txTotalUpdate(String s) { // Total price, Dis price, input money
 		// TODO Auto-generated method stub
 		int txTotalInt = 0;
 		int txDisInt = 0;
@@ -388,10 +429,39 @@ public class Panel_btn02 extends Panel_btn01{
 			
 		}
 		
-		txTotalInt += Integer.parseInt(p); // Total Price Update
+		txTotalInt += Integer.parseInt(s); // Total Price Update
 		txTotal.setText(Integer.toString(txTotalInt));
 		
 		txNeedInt = (txTotalInt+txDisInt); // Need Price
 		txNeed.setText(Integer.toString(txNeedInt));
+	}
+	
+	protected void btnCash() {
+		// TODO Auto-generated method stub
+		int inputTemp = 0;
+		int needTemp = 0;
+
+		try{
+			inputTemp = Integer.parseInt(txStateFeild.getText());
+			needTemp = Integer.parseInt(txNeed.getText());
+		} catch(Exception e){
+			
+		}
+		if(inputTemp==0){
+			lbMessage.setText("받은 돈을 입력하세요.!!");
+		} else if(inputTemp < needTemp){
+			lbMessage.setText("받은 금액이 부족합니다! 다시 입력하세요");
+			txStateFeild.setText("");
+		} else{
+			txInput.setText(Integer.toString(inputTemp));
+			txOutput.setText(Integer.toString((inputTemp-needTemp)));
+			//lbMessage.setText("현금 결제 완료!");
+			txStateFeild.setText("");
+			if(dialog_cash==null){
+				dialog_cash = new Dialog_Cash();
+			}
+			dialog_cash.setVisible(true);
+		}
+
 	}
 }

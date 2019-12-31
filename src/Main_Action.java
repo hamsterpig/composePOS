@@ -87,7 +87,7 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 		} else if(e.getSource()==btnMenu[15]){ // add Menu Plus Price
 			tableAddRow(btnMenu[15]);
 		} else if(e.getSource()==btnNumKey[0]){ // input txStateFeild
-				input_TxStateFeild("0");
+			input_TxStateFeild("0");
 		} else if(e.getSource()==btnNumKey[1]){ // input txStateFeild
 			input_TxStateFeild("1");
 		} else if(e.getSource()==btnNumKey[2]){ // input txStateFeild
@@ -117,7 +117,13 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 		} else if(e.getSource()==btnClear){ // input txStateFeild
 			txStateFeild.setText("");
 			lbMessage.setText("입력창이 초기화되었습니다.");
-		} 
+		} else if(e.getSource()==btnCash){
+			btnCash();
+		} else if(e.getSource()==btnCard){
+			
+		}
 		
-	}
+	} //btnCard, btnCash;
+
+	
 }
