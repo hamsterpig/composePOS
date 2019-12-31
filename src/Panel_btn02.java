@@ -20,7 +20,7 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 public class Panel_btn02 extends Panel_btn01{
-	JLabel lbTotal, lbDis, lbNeed, lbInput, lbOutput; // panel btn02 pad
+	JLabel lbTotal, lbDis, lbNeed, lbInput, lbOutput, lbMessage; // panel btn02 pad
 	
 	JButton btnNumKey[], btnAllClear, btnDisPer, btnDis, btnClear; // pad_n
 	JButton btnCard, btnCash;
@@ -106,7 +106,7 @@ public class Panel_btn02 extends Panel_btn01{
 		pad.add(pad_n, BorderLayout.PAGE_START);
 		pad.add(pad_c, BorderLayout.CENTER);
 		pad.add(pad_s, BorderLayout.PAGE_END);
-		pad_n.setPreferredSize(new Dimension(250,290));
+		pad_n.setPreferredSize(new Dimension(250,330));
 		pad_n.setBackground(new Color(255,255,204));
 		
 		lbTotal = new JLabel("총매출액");
@@ -140,6 +140,13 @@ public class Panel_btn02 extends Panel_btn01{
 		JPanel pad_n_line04 = new JPanel();
 		JPanel pad_n_line05 = new JPanel();
 		JPanel pad_n_line06 = new JPanel();
+		JPanel pad_n_line07 = new JPanel();
+		
+		lbMessage = new JLabel();
+		lbMessage.setBackground(Color.red);
+		lbMessage.setPreferredSize(new Dimension(240,20));
+		lbMessage.setForeground(new Color(51,0,51));
+		lbMessage.setText("판매할 상품을 선택하세요.");
 		
 		pad_n_line01.add(lbTotal);
 		pad_n_line01.add(txTotal);
@@ -151,13 +158,15 @@ public class Panel_btn02 extends Panel_btn01{
 		pad_n_line04.add(txInput);
 		pad_n_line05.add(lbOutput);
 		pad_n_line05.add(txOutput);
-		pad_n_line06.add(txStateFeild);
+		pad_n_line06.add(lbMessage);
+		pad_n_line07.add(txStateFeild);
 		pad_n_line01.setBackground(new Color(255,255,102));
 		pad_n_line02.setBackground(new Color(255,255,102));
 		pad_n_line03.setBackground(new Color(255,255,102));
 		pad_n_line04.setBackground(new Color(255,255,102));
 		pad_n_line05.setBackground(new Color(255,255,102));
-		pad_n_line06.setBackground(new Color(255,120,120));
+		pad_n_line06.setBackground(new Color(204,204,255));
+		pad_n_line07.setBackground(new Color(255,120,120));
 		
 		pad_n.add(pad_n_line01);
 		pad_n.add(pad_n_line02);
@@ -165,12 +174,13 @@ public class Panel_btn02 extends Panel_btn01{
 		pad_n.add(pad_n_line04);
 		pad_n.add(pad_n_line05);
 		pad_n.add(pad_n_line06);
+		pad_n.add(pad_n_line07);
 		
 		pad_c.setBackground(new Color(255,255,204));
 		pad_c.setPreferredSize(new Dimension(250,250));
 		
 		pad_s.setBackground(new Color(255,255,204));
-		pad_s.setPreferredSize(new Dimension(250,250));
+		pad_s.setPreferredSize(new Dimension(250,180));
 		
 		btnAllClear = new JButton("A/C");
 		btnDisPer = new JButton("N/D");
@@ -235,99 +245,9 @@ public class Panel_btn02 extends Panel_btn01{
 		
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource()==btnLogin){ // Login
-			pa_c_cLogin.setVisible(false);
-			pa_c_cLogin.setPreferredSize(new Dimension(0,400));
-			pa_c_eMenuBar.setVisible(true);
-			pa_c_cManuField.setVisible(true);
-	
-		} else if(e.getSource()==btnLogout) { // Logout
-			pa_c_cLogin.setVisible(true);
-			pa_c_cLogin.setPreferredSize(new Dimension(260,400));
-			pa_c_eMenuBar.setVisible(false);
-			pa_c_cManuField.setVisible(false);
 
-		} else if(e.getSource()==btn1){
-			viewer(1);
-		} else if(e.getSource()==btn2){
-			viewer(2);
-		} else if(e.getSource()==btn3){
-			viewer(3);
-		} else if(e.getSource()==btn4){
-			viewer(4);
-		} else if(e.getSource()==btn5){
-			viewer(5);
-		} else if(e.getSource()==btn6){
-			viewer(6);
-		} else if(e.getSource()==btnMenu[0]){ // add Menu Plus Price
-			tableAddRow(btnMenu[0]);
-		} else if(e.getSource()==btnMenu[1]){ // add Menu Plus Price
-			tableAddRow(btnMenu[1]);
-		} else if(e.getSource()==btnMenu[2]){ // add Menu Plus Price
-			tableAddRow(btnMenu[2]);
-		} else if(e.getSource()==btnMenu[3]){ // add Menu Plus Price
-			tableAddRow(btnMenu[3]);
-		} else if(e.getSource()==btnMenu[4]){ // add Menu Plus Price
-			tableAddRow(btnMenu[4]);
-		} else if(e.getSource()==btnMenu[5]){ // add Menu Plus Price
-			tableAddRow(btnMenu[5]);
-		} else if(e.getSource()==btnMenu[6]){ // add Menu Plus Price
-			tableAddRow(btnMenu[6]);
-		} else if(e.getSource()==btnMenu[7]){ // add Menu Plus Price
-			tableAddRow(btnMenu[7]);
-		} else if(e.getSource()==btnMenu[8]){ // add Menu Plus Price
-			tableAddRow(btnMenu[8]);
-		} else if(e.getSource()==btnMenu[9]){ // add Menu Plus Price
-			tableAddRow(btnMenu[9]);
-		} else if(e.getSource()==btnMenu[10]){ // add Menu Plus Price
-			tableAddRow(btnMenu[10]);
-		} else if(e.getSource()==btnMenu[11]){ // add Menu Plus Price
-			tableAddRow(btnMenu[11]);
-		} else if(e.getSource()==btnMenu[12]){ // add Menu Plus Price
-			tableAddRow(btnMenu[12]);
-		} else if(e.getSource()==btnMenu[13]){ // add Menu Plus Price
-			tableAddRow(btnMenu[13]);
-		} else if(e.getSource()==btnMenu[14]){ // add Menu Plus Price
-			tableAddRow(btnMenu[14]);
-		} else if(e.getSource()==btnMenu[15]){ // add Menu Plus Price
-			tableAddRow(btnMenu[15]);
-		} else if(e.getSource()==btnNumKey[0]){ // input txStateFeild
-				input_TxStateFeild("0");
-		} else if(e.getSource()==btnNumKey[1]){ // input txStateFeild
-			input_TxStateFeild("1");
-		} else if(e.getSource()==btnNumKey[2]){ // input txStateFeild
-			input_TxStateFeild("2");
-		} else if(e.getSource()==btnNumKey[3]){ // input txStateFeild
-			input_TxStateFeild("3");
-		} else if(e.getSource()==btnNumKey[4]){ // input txStateFeild
-			input_TxStateFeild("4");
-		} else if(e.getSource()==btnNumKey[5]){ // input txStateFeild
-			input_TxStateFeild("5");
-		} else if(e.getSource()==btnNumKey[6]){ // input txStateFeild
-			input_TxStateFeild("6");
-		} else if(e.getSource()==btnNumKey[7]){ // input txStateFeild
-			input_TxStateFeild("7");
-		} else if(e.getSource()==btnNumKey[8]){ // input txStateFeild
-			input_TxStateFeild("8");
-		} else if(e.getSource()==btnNumKey[9]){ // input txStateFeild
-			input_TxStateFeild("9");
-		} else if(e.getSource()==btnNumKey[10]){ // input txStateFeild
-			input_TxStateFeild("00");
-		} else if(e.getSource()==btnAllClear){ // input txStateFeild
-			btnAllClear();
-		} else if(e.getSource()==btnDisPer){ // input txStateFeild
-			btnDisPer(txStateFeild.getText());
-		} else if(e.getSource()==btnDis){ // input txStateFeild
-			btnDis_Percent(txStateFeild.getText());
-		} else if(e.getSource()==btnClear){ // input txStateFeild
-			txStateFeild.setText("");
-		} 
-		
-	}
 
-	private void btnDis_Percent(String s) {
+	protected void btnDis_Percent(String s) {
 		// TODO Auto-generated method stub
 		if(tm.getRowCount()==0){
 			// Dialog
@@ -353,6 +273,7 @@ public class Panel_btn02 extends Panel_btn01{
 				txNeed.setText(Integer.toString(txTotalInt));
 				
 				txStateFeild.setText("");
+				lbMessage.setText(s + "% 할인이 적용되었습니다.");
 			}
 		}
 	}
@@ -370,6 +291,7 @@ public class Panel_btn02 extends Panel_btn01{
 			revalidate();
 			repaint();
 		}
+		lbMessage.setText("판매할 상품을 선택하세요.");
 	}
 
 	protected void btnDisPer(String s) { // total Update Because Dis Cange
@@ -397,6 +319,7 @@ public class Panel_btn02 extends Panel_btn01{
 				txNeed.setText(Integer.toString(txTotalInt));
 				
 				txStateFeild.setText("");
+				lbMessage.setText(s + " 만큼 할인이 적용되었습니다.");
 			}
 		}
 	}
@@ -436,6 +359,7 @@ public class Panel_btn02 extends Panel_btn01{
 				tm.setValueAt(Integer.toString(priceUP), i, 4);
 				
 				txTotalUpdate(price);
+				lbMessage.setText(itemName + "가 추가되었습니다 ("+addEA+"개)");
 			} else{
 				
 			}
@@ -446,6 +370,8 @@ public class Panel_btn02 extends Panel_btn01{
 			tm.addRow(tempItem);
 			
 			txTotalUpdate(price);
+			
+			lbMessage.setText(itemName + "가 추가되었습니다");
 		}
 	}
 
@@ -468,7 +394,4 @@ public class Panel_btn02 extends Panel_btn01{
 		txNeedInt = (txTotalInt+txDisInt); // Need Price
 		txNeed.setText(Integer.toString(txNeedInt));
 	}
-	
-	
-
 }

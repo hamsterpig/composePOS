@@ -308,32 +308,7 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-/*		if(e.getSource()==btnLogin){ // Login
-			pa_c_cLogin.setVisible(false);
-			pa_c_cLogin.setPreferredSize(new Dimension(0,400));
-			pa_c_eMenuBar.setVisible(true);
-			pa_c_cManuField.setVisible(true);
-	
-		} else if(e.getSource()==btnLogout) { // Logout
-			pa_c_cLogin.setVisible(true);
-			pa_c_cLogin.setPreferredSize(new Dimension(260,400));
-			pa_c_eMenuBar.setVisible(false);
-			pa_c_cManuField.setVisible(false);
 
-		} else if(e.getSource()==btn1){
-			viewer(1);
-		} else if(e.getSource()==btn2){
-			viewer(2);
-		} else if(e.getSource()==btn3){
-			viewer(3);
-		} else if(e.getSource()==btn4){
-			viewer(4);
-		} else if(e.getSource()==btn5){
-			viewer(5);
-		} else if(e.getSource()==btn6){
-			viewer(6);
-		} */
 	}
 	
 	
