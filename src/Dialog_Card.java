@@ -101,11 +101,11 @@ public class Dialog_Card extends JDialog implements ActionListener {
 		// TODO Auto-generated method stub
 		if(e.getSource()==btnY){
 			Static_Pad.setStaticTxStateFeild("결제가 완료되었습니다");
-			Panel_btn02.cashPayment(true);
+			Panel_btn02.cardPayment(true);
 			setVisible(false);
 			
 		} else if(e.getSource()==btnN){
-			Panel_btn02.cashPayment(false);
+			Panel_btn02.cardPayment(false);
 			setVisible(false);
 		}
 	}

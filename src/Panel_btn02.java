@@ -3,20 +3,19 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 public class Panel_btn02 extends Panel_btn01{
@@ -31,10 +30,12 @@ public class Panel_btn02 extends Panel_btn01{
 
 	static JTextField txStateFeild;
 	JTable tableItem; // panel btn01
-	DefaultTableModel tm;
+	static DefaultTableModel tm;
 	
 	Dialog_Cash dialog_cash;
 	Dialog_Card dialog_card;
+	
+	static int orderNum=0;
 	
 	//int[] intEA = new int
 	Panel_btn02(){
@@ -525,9 +526,14 @@ public class Panel_btn02 extends Panel_btn01{
 		lbMessage.setText("입력창이 초기화되었습니다.");
 		lbMessage.setForeground(Color.gray);
 	}
-	public static void cashPayment(boolean payment){ // File input output Stream
+	public static void cardPayment(boolean payment){ // File input output Stream
 		if(payment){
-			
+			try {
+				payment_outputDB();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			//
 			btnClear();
 			lbMessage.setText("결제가 완료되었습니다.");
@@ -536,6 +542,54 @@ public class Panel_btn02 extends Panel_btn01{
 			lbMessage.setText("결제가 취소되었습니다.");
 			lbMessage.setForeground(new Color(255,100,100));
 		}
+	}
+	protected static void payment_outputDB() throws IOException{
+		String temp[][] = new String[tm.getRowCount()][tm.getColumnCount()];
+		String tempConcat = "";
 		
+		File file = new File("src/db/paymentDB.txt");
+		if(!file.exists()){ // file not
+			FileWriter check = new FileWriter("src/db/paymentDB.txt"); // new creat file
+		} else { 
+			FileReader reader = new FileReader("src/db/paymentDB.txt"); // file Open
+			BufferedReader in = new BufferedReader(reader);
+			
+			Scanner scan = new Scanner(reader);
+			try{
+				String string;
+			    while ((string = in.readLine()) != null) {
+			    	tempConcat = tempConcat.concat("\n"+string);
+			    	System.out.println(string);
+			        
+			      }
+			} catch(Exception e){
+				
+			}
+			reader.close();
+			tempConcat = tempConcat.concat("\n");
+		}
+		
+		
+
+		tempConcat = tempConcat.concat("\n@"+Integer.toString(orderNum)+"@\n"); // Order Number - PK
+		orderNum++;
+		for(int i=0; i<tm.getRowCount(); i++){
+			for(int j=0; j<tm.getColumnCount(); j++){
+				temp[i][j] = (String) tm.getValueAt(i, j);
+				tempConcat = tempConcat.concat(temp[i][j]);
+				System.out.println(temp[i][j]);
+				tempConcat = tempConcat.concat("/");
+			}
+			tempConcat = tempConcat.concat("\n");
+		}
+		
+		FileWriter write = new FileWriter("src/db/paymentDB.txt"); // 텍스트 파일이 없으면 새로 생성함!
+
+		
+
+		write.write(tempConcat); // 파일에 "입출력!"을 저장함.
+		System.out.println(tempConcat);
+		write.close();
+
 	}
 }
