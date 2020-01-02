@@ -436,7 +436,7 @@ public class Panel_btn02 extends Panel_btn01{
 		txNeed.setText(Integer.toString(txNeedInt));
 	}
 	
-	protected void btnCash() {
+	protected void btnCash() { // cash Event
 		// TODO Auto-generated method stub
 		int inputTemp = 0;
 		int needTemp = 0;
@@ -458,6 +458,11 @@ public class Panel_btn02 extends Panel_btn01{
 			//lbMessage.setText("현금 결제 완료!");
 			txStateFeild.setText("");
 			if(dialog_cash==null){
+				Static_Pad.setStaticTxTotal(txTotal.getText());
+				Static_Pad.setStaticTxInput(txInput.getText());
+				Static_Pad.setStaticTxNeed((txNeed.getText()));
+				Static_Pad.setStaticTxStateFeild(txStateFeild.getText());
+				Static_Pad.setStaticTxTotal(txTotal.getText());
 				dialog_cash = new Dialog_Cash();
 			}
 			dialog_cash.setVisible(true);
