@@ -25,8 +25,11 @@ public class Panel_btn02 extends Panel_btn01{
 	
 	JButton btnNumKey[], btnAllClear, btnDisPer, btnDis, btnClear; // pad_n
 	JButton btnCard, btnCash;
-	
-	JTextField txTotal, txDis, txNeed, txInput, txOutput; // panel btn02 pad
+
+	static JTextField txTotal, txDis, txNeed, txInput, JTextField;
+
+
+	static JTextField txOutput;
 
 	static JTextField txStateFeild;
 	JTable tableItem; // panel btn01
@@ -35,7 +38,7 @@ public class Panel_btn02 extends Panel_btn01{
 	Dialog_Cash dialog_cash;
 	Dialog_Card dialog_card;
 	
-	static int orderNum=0;
+	static int toDayOrderNum=0;
 	
 	//int[] intEA = new int
 	Panel_btn02(){
@@ -309,7 +312,7 @@ public class Panel_btn02 extends Panel_btn01{
 		}
 	}
 
-	protected void btnAllClear() {
+	protected static void btnAllClear() {
 		// TODO Auto-generated method stub
 		txTotal.setText("0");
 		txDis.setText("0");
@@ -319,8 +322,6 @@ public class Panel_btn02 extends Panel_btn01{
 		txStateFeild.setText("");
 		while(tm.getRowCount()!=0){ // table row All delete
 			tm.removeRow(0);
-			revalidate();
-			repaint();
 		}
 		lbMessage.setText("판매할 상품을 선택하세요.");
 		lbMessage.setForeground(Color.gray);
@@ -535,7 +536,7 @@ public class Panel_btn02 extends Panel_btn01{
 				e.printStackTrace();
 			}
 			//
-			btnClear();
+			btnAllClear();
 			lbMessage.setText("결제가 완료되었습니다.");
 			lbMessage.setForeground(Color.blue);
 		} else {
@@ -546,33 +547,60 @@ public class Panel_btn02 extends Panel_btn01{
 	protected static void payment_outputDB() throws IOException{
 		String temp[][] = new String[tm.getRowCount()][tm.getColumnCount()];
 		String tempConcat = "";
+		int tempPK = 0;
 		
-		File file = new File("src/db/paymentDB.txt");
+		File file = new File("src/db/paymentDB.txt"); //date
+		File fileNum = new File("src/db/paymentDB_PK.txt"); 
 		if(!file.exists()){ // file not
 			FileWriter check = new FileWriter("src/db/paymentDB.txt"); // new creat file
-		} else { 
+			
+		} else {
+			if(!fileNum.exists()){
+				FileWriter check2 = new FileWriter("src/db/paymentDB_PK.txt");
+			}
 			FileReader reader = new FileReader("src/db/paymentDB.txt"); // file Open
+			FileReader reader2 = new FileReader("src/db/paymentDB_PK.txt"); // file Open
+			
 			BufferedReader in = new BufferedReader(reader);
+			BufferedReader in2 = new BufferedReader(reader2);
 			
 			Scanner scan = new Scanner(reader);
+			Scanner scan2 = new Scanner(reader2);
 			try{
 				String string;
+				String string2;
 			    while ((string = in.readLine()) != null) {
 			    	tempConcat = tempConcat.concat("\n"+string);
 			    	System.out.println(string);
-			        
 			      }
+			    
+			    
 			} catch(Exception e){
 				
 			}
+			int tempPlus = 0;
+			try{
+				tempPlus = ((Integer.parseInt(scan2.next()))+1);
+			} catch(Exception e){
+				FileWriter write2 = new FileWriter("src/db/paymentDB_PK.txt");
+
+				write2.write("0"); // file save
+				write2.close();
+				System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+			}
+			
+		    System.out.println("---------------->"+tempPlus);
+		    tempPK = tempPlus;
+		    
 			reader.close();
+			reader2.close();
 			tempConcat = tempConcat.concat("\n");
 		}
 		
 		
 
-		tempConcat = tempConcat.concat("\n@"+Integer.toString(orderNum)+"@\n"); // Order Number - PK
-		orderNum++;
+		tempConcat = tempConcat.concat("\n@"+Integer.toString(tempPK)+"@\n"); // Order Number - PK
+		toDayOrderNum++;
 		for(int i=0; i<tm.getRowCount(); i++){
 			for(int j=0; j<tm.getColumnCount(); j++){
 				temp[i][j] = (String) tm.getValueAt(i, j);
@@ -584,12 +612,16 @@ public class Panel_btn02 extends Panel_btn01{
 		}
 		
 		FileWriter write = new FileWriter("src/db/paymentDB.txt"); // 텍스트 파일이 없으면 새로 생성함!
-
+		FileWriter write2 = new FileWriter("src/db/paymentDB_PK.txt");
 		
 
-		write.write(tempConcat); // 파일에 "입출력!"을 저장함.
+		write.write(tempConcat); // file save
 		System.out.println(tempConcat);
 		write.close();
+		
+		write2.write(Integer.toString(tempPK)); // file save
+		System.out.println(tempPK);
+		write2.close();
 
 	}
 }
