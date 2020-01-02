@@ -20,16 +20,21 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 public class Panel_btn02 extends Panel_btn01{
-	JLabel lbTotal, lbDis, lbNeed, lbInput, lbOutput, lbMessage; // panel btn02 pad
+	JLabel lbTotal, lbDis, lbNeed, lbInput, lbOutput; // panel btn02 pad
+
+	static JLabel lbMessage;
 	
 	JButton btnNumKey[], btnAllClear, btnDisPer, btnDis, btnClear; // pad_n
 	JButton btnCard, btnCash;
 	
-	JTextField txTotal, txDis, txNeed, txInput, txOutput, txStateFeild; // panel btn02 pad
+	JTextField txTotal, txDis, txNeed, txInput, txOutput; // panel btn02 pad
+
+	static JTextField txStateFeild;
 	JTable tableItem; // panel btn01
 	DefaultTableModel tm;
 	
 	Dialog_Cash dialog_cash;
+	Dialog_Card dialog_card;
 	
 	//int[] intEA = new int
 	Panel_btn02(){
@@ -121,11 +126,11 @@ public class Panel_btn02 extends Panel_btn01{
 		txNeed = new JTextField(16);
 		txInput = new JTextField(16);
 		txOutput = new JTextField(16);
-		txTotal.setEnabled(false);
-		txDis.setEnabled(false);
-		txNeed.setEnabled(false);
-		txInput.setEnabled(false);
-		txOutput.setEnabled(false);
+		txTotal.setEditable(false);
+		txDis.setEditable(false);
+		txNeed.setEditable(false);
+		txInput.setEditable(false);
+		txOutput.setEditable(false);
 		txTotal.setText("0");
 		txDis.setText("0");
 		txNeed.setText("0");
@@ -261,12 +266,14 @@ public class Panel_btn02 extends Panel_btn01{
 		}
 		if(isTry > 100){
 			lbMessage.setText("% 할인은 100을 초과할 수 없습니다.!!");
+			lbMessage.setForeground(Color.red);
 			txStateFeild.setText("");
 		} else{
 			if(tm.getRowCount()==0){
 				// Dialog
 				txStateFeild.setText("");
 				lbMessage.setText("할인을 적용할 상품이 없습니다.!!");
+				lbMessage.setForeground(Color.red);
 			} else{
 				if(!(txStateFeild.getText()).equals("") || !(txStateFeild.getText()).equals("0") || txStateFeild.getText()!=null){
 					int txTotalInt = 0;
@@ -291,8 +298,10 @@ public class Panel_btn02 extends Panel_btn01{
 					
 					if(disPer < 0){
 						lbMessage.setText(s + "% 만큼 할인이 적용");
+						lbMessage.setForeground(Color.black);
 					} else{
 						lbMessage.setText("먼저 적용할 할인 %을 입력하세요");
+						lbMessage.setForeground(Color.red);
 					}
 				}
 			}
@@ -313,6 +322,7 @@ public class Panel_btn02 extends Panel_btn01{
 			repaint();
 		}
 		lbMessage.setText("판매할 상품을 선택하세요.");
+		lbMessage.setForeground(Color.gray);
 	}
 
 	protected void btnDisPer(String s) { // total Update Because Dis Cange
@@ -324,14 +334,17 @@ public class Panel_btn02 extends Panel_btn01{
 			isTry = Integer.parseInt(s);
 		} catch(Exception e){
 			lbMessage.setText("할인을 적용할 수 없습니다.!!");
+			lbMessage.setForeground(Color.red);
 		}
 		if(isTry > txNeedTry){
 			lbMessage.setText("할인 금액이 판매금액을 넘을 수 없습니다.!!");
+			lbMessage.setForeground(Color.red);
 			txStateFeild.setText("");
 		} else{
 			if(tm.getRowCount()==0){
 				// Dialog
 				lbMessage.setText("할인을 적용할 상품이 없습니다.!!");
+				lbMessage.setForeground(Color.red);
 				txStateFeild.setText("");
 			} else{
 				if(!(txStateFeild.getText()).equals("") || !(txStateFeild.getText()).equals("0") || txStateFeild.getText()!=null){
@@ -355,8 +368,10 @@ public class Panel_btn02 extends Panel_btn01{
 					txStateFeild.setText("");
 					if(disInt < 0){
 						lbMessage.setText(s + " 만큼 할인이 적용(Total:"+(disInt*-1)+")");
+						lbMessage.setForeground(Color.black);
 					} else{
 						lbMessage.setText("먼저 적용할 할인 금액을 입력하세요");
+						lbMessage.setForeground(Color.red);
 					}
 					
 					
@@ -401,6 +416,7 @@ public class Panel_btn02 extends Panel_btn01{
 				
 				txTotalUpdate(price);
 				lbMessage.setText(itemName + "가 추가되었습니다 ("+(addEA+1)+"개)");
+				lbMessage.setForeground(Color.black);
 			} else{
 				
 			}
@@ -413,6 +429,7 @@ public class Panel_btn02 extends Panel_btn01{
 			txTotalUpdate(price);
 			
 			lbMessage.setText(itemName + "가 추가되었습니다");
+			lbMessage.setForeground(Color.black);
 		}
 	}
 
@@ -449,8 +466,10 @@ public class Panel_btn02 extends Panel_btn01{
 		}
 		if(inputTemp==0){
 			lbMessage.setText("받은 돈을 입력하세요.!!");
+			lbMessage.setForeground(Color.red);
 		} else if(inputTemp < needTemp){
 			lbMessage.setText("받은 금액이 부족합니다! 다시 입력하세요");
+			lbMessage.setForeground(Color.red);
 			txStateFeild.setText("");
 		} else{
 			txInput.setText(Integer.toString(inputTemp));
@@ -461,12 +480,62 @@ public class Panel_btn02 extends Panel_btn01{
 				Static_Pad.setStaticTxTotal(txTotal.getText());
 				Static_Pad.setStaticTxInput(txInput.getText());
 				Static_Pad.setStaticTxNeed((txNeed.getText()));
-				Static_Pad.setStaticTxStateFeild(txStateFeild.getText());
-				Static_Pad.setStaticTxTotal(txTotal.getText());
+				Static_Pad.setStaticTxOutput(txOutput.getText());
+				Static_Pad.setStaticTxDis(txDis.getText());
 				dialog_cash = new Dialog_Cash();
+				dialog_cash.setVisible(true);
+				lbMessage.setText("현금 결제 진행 중...");
+				lbMessage.setForeground(Color.blue);
+			} else{
+				dialog_cash.setVisible(true);
 			}
-			dialog_cash.setVisible(true);
+			
 		}
 
+	}
+	protected void btnCard(){ // Card Event
+
+		if((int)tm.getRowCount()!=0){
+			txStateFeild.setText("");
+			if(dialog_cash==null){
+				Static_Pad.setStaticTxTotal(txTotal.getText());
+				Static_Pad.setStaticTxInput(txInput.getText());
+				Static_Pad.setStaticTxNeed((txNeed.getText()));
+				Static_Pad.setStaticTxOutput(txOutput.getText());
+				Static_Pad.setStaticTxDis(txDis.getText());
+				dialog_card = new Dialog_Card();
+				dialog_card.setVisible(true);
+				lbMessage.setText("카드 결제 진행 중...");
+				lbMessage.setForeground(Color.blue);
+			} else{
+				dialog_cash.setVisible(true);
+			}
+		} else{
+			lbMessage.setText("결제할 상품이 없습니다.!");
+			lbMessage.setForeground(Color.red);
+		}
+
+		
+			
+		
+	}
+	
+	protected static void btnClear(){
+		txStateFeild.setText("");
+		lbMessage.setText("입력창이 초기화되었습니다.");
+		lbMessage.setForeground(Color.gray);
+	}
+	public static void cashPayment(boolean payment){ // File input output Stream
+		if(payment){
+			
+			//
+			btnClear();
+			lbMessage.setText("결제가 완료되었습니다.");
+			lbMessage.setForeground(Color.blue);
+		} else {
+			lbMessage.setText("결제가 취소되었습니다.");
+			lbMessage.setForeground(new Color(255,100,100));
+		}
+		
 	}
 }

@@ -115,12 +115,11 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 		} else if(e.getSource()==btnDis){ // input txStateFeild
 			btnDis_Percent(txStateFeild.getText());
 		} else if(e.getSource()==btnClear){ // input txStateFeild
-			txStateFeild.setText("");
-			lbMessage.setText("입력창이 초기화되었습니다.");
+			btnClear();
 		} else if(e.getSource()==btnCash){
 			btnCash();
 		} else if(e.getSource()==btnCard){
-			
+			btnCard();
 		}
 		
 	} //btnCard, btnCash;

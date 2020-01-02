@@ -7,16 +7,16 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class Dialog_Cash extends JDialog implements ActionListener {
+public class Dialog_Card extends JDialog implements ActionListener {
 	JPanel pa;
 	JPanel pa_c, pa_n, pa_s, pa_w, p_e;
 	
-	JTextField txTotal, txDis, txNeed, txInput, txOutput, txStateFeild;
-	JLabel lbTotal, lbDis, lbNeed, lbInput, lbOutput, lbStateFeild;
+	JTextField txTotal, txDis, txNeed, txStateFeild;
+	JLabel lbTotal, lbDis, lbInput, lbStateFeild;
 	
 	JButton btnY, btnN;
 	
-	public Dialog_Cash(){
+	public Dialog_Card(){
 		
 		pa = new JPanel(new BorderLayout());
 		pa_c = new JPanel();
@@ -37,29 +37,21 @@ public class Dialog_Cash extends JDialog implements ActionListener {
 		JPanel pa_c_Line03 = new JPanel();
 		JPanel pa_c_Line04 = new JPanel();
 		JPanel pa_c_Line05 = new JPanel();
-		JPanel pa_c_Line06 = new JPanel();
-		JPanel pa_c_Line07 = new JPanel();
 		
 		lbTotal = new JLabel("총매출액"); 
 		lbDis = new JLabel("할인금액");
-		lbNeed = new JLabel("받을금액");
-		lbInput = new JLabel("받은금액");
-		lbOutput = new JLabel("거스름돈"); 
-		lbOutput.setForeground(Color.red);
+		lbInput = new JLabel("결제금액");
+		lbInput.setForeground(Color.red);
 		
 		txTotal = new JTextField(12);
 		txDis = new JTextField(12);
 		txNeed = new JTextField(12);
-		txInput = new JTextField(12);
-		txOutput = new JTextField(12);
 		JLabel msg = new JLabel("결제 하시겠습니까?");
 		msg.setForeground(Color.red);
 		
 		txTotal.setEditable(false);
 		txDis.setEditable(false);
 		txNeed.setEditable(false);
-		txInput.setEditable(false);
-		txOutput.setEditable(false);
 		
 		btnY = new JButton("결제");
 		btnY.setBackground(new Color(100,100,255));
@@ -74,32 +66,23 @@ public class Dialog_Cash extends JDialog implements ActionListener {
 		pa_c_Line01.add(txTotal);
 		pa_c_Line02.add(lbDis);
 		pa_c_Line02.add(txDis);
-		pa_c_Line03.add(lbNeed);
+		pa_c_Line03.add(lbInput);
 		pa_c_Line03.add(txNeed);
-		pa_c_Line04.add(lbInput);
-		pa_c_Line04.add(txInput);
-		pa_c_Line05.add(lbOutput);
-		pa_c_Line05.add(txOutput);
-		pa_c_Line06.add(msg);
-		pa_c_Line06.setOpaque(false);
-		pa_c_Line07.add(btnY);
-		pa_c_Line07.add(btnN);
+		pa_c_Line04.add(msg);
+		pa_c_Line04.setOpaque(false);
+		pa_c_Line05.add(btnY);
+		pa_c_Line05.add(btnN);
 		
 		txTotal.setText(Static_Pad.getStaticTxTotal());
 		txDis.setText(Static_Pad.getStaticTxDis());
 		txNeed.setText(Static_Pad.getStaticTxNeed());
-		txInput.setText(Static_Pad.getStaticTxInput());
-		txOutput.setText(Static_Pad.getStaticTxOutput());
-		
 		
 		pa_c.add(pa_c_Line01);
 		pa_c.add(pa_c_Line02);
 		pa_c.add(pa_c_Line03);
 		pa_c.add(pa_c_Line04);
 		pa_c.add(pa_c_Line05);
-		pa_c.add(pa_c_Line06);
-		pa_c.add(pa_c_Line06);
-		pa_c.add(pa_c_Line07);
+		
 		pa_c.setBackground(new Color(255,255,183));
 		
 		pa_c.setPreferredSize(new Dimension(230,360));;
