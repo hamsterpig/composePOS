@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -527,10 +529,11 @@ public class Panel_btn02 extends Panel_btn01{
 		lbMessage.setText("입력창이 초기화되었습니다.");
 		lbMessage.setForeground(Color.gray);
 	}
+	
 	public static void cardPayment(boolean payment){ // File input output Stream
 		if(payment){
 			try {
-				payment_outputDB();
+				payment_outputDB("Card");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -544,10 +547,38 @@ public class Panel_btn02 extends Panel_btn01{
 			lbMessage.setForeground(new Color(255,100,100));
 		}
 	}
-	protected static void payment_outputDB() throws IOException{
+	public static void cashPayment(boolean payment){ // File input output Stream
+		if(payment){
+			try {
+				payment_outputDB("Cash");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//
+			btnAllClear();
+			lbMessage.setText("결제가 완료되었습니다.");
+			lbMessage.setForeground(Color.blue);
+		} else {
+			lbMessage.setText("결제가 취소되었습니다.");
+			lbMessage.setForeground(new Color(255,100,100));
+		}
+	}
+	
+	protected static void payment_outputDB(String type) throws IOException{
 		String temp[][] = new String[tm.getRowCount()][tm.getColumnCount()];
 		String tempConcat = "";
 		int tempPK = 0;
+		String priceTotal = txTotal.getText();
+		String priceDis = txDis.getText();
+		String priceNeed = txNeed.getText();
+		
+		
+		String timeNow;
+		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss"); 	
+		Date time = new Date();
+		timeNow = format1.format(time);
+		System.out.println(timeNow); // time save
 		
 		File file = new File("src/db/paymentDB.txt"); //date
 		File fileNum = new File("src/db/paymentDB_PK.txt"); 
@@ -566,6 +597,7 @@ public class Panel_btn02 extends Panel_btn01{
 			
 			Scanner scan = new Scanner(reader);
 			Scanner scan2 = new Scanner(reader2);
+			
 			try{
 				String string;
 				String string2;
@@ -586,7 +618,6 @@ public class Panel_btn02 extends Panel_btn01{
 
 				write2.write("0"); // file save
 				write2.close();
-				System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
 			}
 			
 		    System.out.println("---------------->"+tempPlus);
@@ -596,10 +627,8 @@ public class Panel_btn02 extends Panel_btn01{
 			reader2.close();
 			tempConcat = tempConcat.concat("\n");
 		}
-		
-		
 
-		tempConcat = tempConcat.concat("\n@"+Integer.toString(tempPK)+"@\n"); // Order Number - PK
+		tempConcat = tempConcat.concat("@"+Integer.toString(tempPK)+"@\n"); // Order Number - PK
 		toDayOrderNum++;
 		for(int i=0; i<tm.getRowCount(); i++){
 			for(int j=0; j<tm.getColumnCount(); j++){
@@ -610,18 +639,28 @@ public class Panel_btn02 extends Panel_btn01{
 			}
 			tempConcat = tempConcat.concat("\n");
 		}
+		tempConcat = tempConcat.concat(priceTotal+"/"+priceDis+"/"+priceNeed+"/"+type+"\n");
+		tempConcat = tempConcat.concat(timeNow); // yyyy mm dd
+		
 		
 		FileWriter write = new FileWriter("src/db/paymentDB.txt"); // 텍스트 파일이 없으면 새로 생성함!
 		FileWriter write2 = new FileWriter("src/db/paymentDB_PK.txt");
 		
 
-		write.write(tempConcat); // file save
+		write.write(tempConcat); // Data file save
 		System.out.println(tempConcat);
 		write.close();
 		
-		write2.write(Integer.toString(tempPK)); // file save
-		System.out.println(tempPK);
+		write2.write(Integer.toString(tempPK)); // PK file save
+		//System.out.println(tempPK);
 		write2.close();
-
+		
+		/* ex) save
+		 * @0@
+		 * table Row1
+		 * table Row2
+		 * total / dis / need / type
+		 * data
+		 */
 	}
 }
