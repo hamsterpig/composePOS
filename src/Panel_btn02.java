@@ -624,7 +624,7 @@ public class Panel_btn02 extends Panel_btn01{
 			tempConcat = tempConcat.concat("\n");
 		}
 
-		tempConcat = tempConcat.concat("@"+Integer.toString(tempPK)+"@\n"); // Order Number - PK
+		tempConcat = tempConcat.concat("@"+Integer.toString(tempPK)+"~\n"); // Order Number - PK
 		toDayOrderNum++;
 		for(int i=0; i<tm.getRowCount(); i++){
 			for(int j=0; j<tm.getColumnCount(); j++){
@@ -644,7 +644,7 @@ public class Panel_btn02 extends Panel_btn01{
 		
 
 		write.write(tempConcat); // Data file save
-		System.out.println(tempConcat);
+		//System.out.println(tempConcat);
 		write.close();
 		
 		write2.write(Integer.toString(tempPK)); // PK file save

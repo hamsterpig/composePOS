@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -48,6 +49,12 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 			viewer(2);
 		} else if(e.getSource()==btn3){
 			viewer(3);
+			try {
+				renewal();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} // table
 		} else if(e.getSource()==btn4){
 			viewer(4);
 		} else if(e.getSource()==btn5){
