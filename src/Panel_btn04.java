@@ -19,7 +19,8 @@ public class Panel_btn04 extends Panel_btn03{
 
 	
 	Panel_btn04(){
-		
+		pa_c_cManuField_cbtn4.add(new JButton("¹öÆ° 4"));
+
 	}
 	
 

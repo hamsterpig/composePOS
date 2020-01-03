@@ -203,13 +203,6 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		pa_c_cManuField_cbtn5.setVisible(false);
 		pa_c_cManuField_cbtn6.setVisible(false);
 		
-		//pa_c_cManuField_cbtn1.add(new JButton("버튼 1"));
-		//pa_c_cManuField_cbtn2.add(new JButton("버튼 3"));
-		pa_c_cManuField_cbtn3.add(new JButton("버튼 3"));
-		pa_c_cManuField_cbtn4.add(new JButton("버튼 4"));
-		pa_c_cManuField_cbtn5.add(new JButton("버튼 5"));
-		pa_c_cManuField_cbtn6.add(new JButton("버튼 6"));
-		
 		pa_c_cManuField_cbtn1_c = new JPanel();
 		pa_c_cManuField_cbtn1_w = new JPanel();
 		pa_c_cManuField_cbtn1_e = new JPanel();

@@ -19,7 +19,7 @@ public class Panel_btn06 extends Panel_btn05{
 
 	
 	Panel_btn06(){
-		
+		pa_c_cManuField_cbtn6.add(new JButton("¹öÆ° 6"));
 	}
 	
 	
