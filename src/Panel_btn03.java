@@ -95,36 +95,35 @@ public class Panel_btn03 extends Panel_btn02{
 			reader.close();
 			tempConcat = tempConcat.concat("\n");
 		}
-		System.out.println(tempConcat);
+		//System.out.println(tempConcat);
 		
-		
-		int listCnt = 0; // PK Count 특정문자 카운터
-	    int fromIndex = -1;
-	    while ((fromIndex = tempConcat.indexOf("@", fromIndex + 1)) >= 0) {
-	    	listCnt++;
-	    }
+		int listCnt = charCount(tempConcat, "@"); // char cont method
+
 	    //System.out.println(listCnt);
 
 
 
 		String pkString[] = new String[listCnt]; // add Row
+		
 		for(int i=0; i<=listCnt; i++){ // PK Segment @ Criteria
 			pkString = tempConcat.split("@");
 		}
+		String dataPayment[] = new String[listCnt]; // add data
+		dataPayment = cutData(pkString);
 		
-		String dataString[] = new String[listCnt]; // add Row
-		String dataIntput;
+		String countPayment[] = new String[listCnt];
+		countPayment = cutCount(pkString);
+		
 		for(int i=0; i<=listCnt; i++){
-			dataString = tempConcat.split("#");
-			cutP(dataString);
-			System.out.println(dataString[i]);
+			
 		}
 		String pkInput;
 		for(int i=0; i<listCnt; i++){ // 영수증번호   판매날짜   결제유형   상품개수   상품금액   할인금액   판매금액   
 			
 			pkInput = pkString[i+1].substring(0, 1);
-			String[] addList = {pkInput,"판매날짜","결제유형","상품개수","상품금액","할인금액","판매금액"};
+			String[] addList = {pkInput,dataPayment[i],"결제유형","상품개수","상품금액","할인금액","판매금액"};
 			tmPaymentList.addRow(addList);
+			//System.out.println(i + " :" + pkString[i+1].substring("#", "d"));
 		}
 		
 		
@@ -133,10 +132,38 @@ public class Panel_btn03 extends Panel_btn02{
 		 // table add row
 		
 	}
-	
-	protected void cutP(String[] s) {
+	private int charCount(String target, String s) {
 		// TODO Auto-generated method stub
+		int listCnt = 0; // PK Count 특정문자 카운터
+	    int fromIndex = -1;
+	    while ((fromIndex = target.indexOf("@", fromIndex + 1)) >= 0) {
+	    	listCnt++;
+	    }
+	    return listCnt;
+	}
 
+	private String[] cutCount(String[] pkString) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	protected String subStringOut(String target, String c){ // String Segment Method
+		String tempOut;
+		int idx = target.indexOf(c);
+		tempOut = target.substring(idx+1);
+		return tempOut;
+	}
+	
+	protected String[] cutData(String[] pkString) { // date Segment
+		// TODO Auto-generated method stub
+		String temp[] = new String[pkString.length];
+		
+		System.out.println(pkString[1]);
+		for(int i=1; i<(pkString.length); i++){
+			temp[i-1] = subStringOut(pkString[i], "#");
+		}
+		return temp;
 	}
 
 	protected void btnDataPrevious(){

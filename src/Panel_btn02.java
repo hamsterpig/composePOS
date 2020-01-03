@@ -616,7 +616,6 @@ public class Panel_btn02 extends Panel_btn01{
 				write2.close();
 			}
 			
-		    System.out.println("---------------->"+tempPlus);
 		    tempPK = tempPlus;
 		    
 			reader.close();
@@ -630,13 +629,13 @@ public class Panel_btn02 extends Panel_btn01{
 			for(int j=0; j<tm.getColumnCount(); j++){
 				temp[i][j] = (String) tm.getValueAt(i, j);
 				tempConcat = tempConcat.concat(temp[i][j]);
-				System.out.println(temp[i][j]);
+				//System.out.println(temp[i][j]);
 				tempConcat = tempConcat.concat("/");
 			}
 			tempConcat = tempConcat.concat("\n");
 		}
 		tempConcat = tempConcat.concat(priceTotal+"/"+priceDis+"/"+priceNeed+"/"+type+"\n");
-		tempConcat = tempConcat.concat(timeNow); // yyyy mm dd
+		tempConcat = tempConcat.concat("#"+timeNow); // yyyy mm dd
 		
 		
 		FileWriter write = new FileWriter("src/db/paymentDB.txt"); // 텍스트 파일이 없으면 새로 생성함!
