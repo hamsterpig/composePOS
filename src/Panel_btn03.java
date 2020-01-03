@@ -56,6 +56,8 @@ public class Panel_btn03 extends Panel_btn02{
 		//tableItem.setPreferredSize(new Dimension(650,300));
 		tableSP.setPreferredSize(new Dimension(850,450));
 		pbtn3_c.setPreferredSize(new Dimension(850,450));
+		tablePamentList.getColumnModel().getColumn(0).setPreferredWidth(35); // table
+		tablePamentList.getColumnModel().getColumn(1).setPreferredWidth(100);
 		
 		String timeNow;
 		SimpleDateFormat formatView = new SimpleDateFormat ( "yyyy년 MM월 dd일"); 	
@@ -121,7 +123,7 @@ public class Panel_btn03 extends Panel_btn02{
 		for(int i=0; i<listCnt; i++){ // 영수증번호   판매날짜   결제유형   상품개수   상품금액   할인금액   판매금액   
 			
 			pkInput = pkString[i+1].substring(0, 1);
-			String[] addList = {pkInput,dataPayment[i],"결제유형","상품개수","상품금액","할인금액","판매금액"};
+			String[] addList = {pkInput,dataPayment[i],"결제유형",countPayment[i],"상품금액","할인금액","판매금액"};
 			tmPaymentList.addRow(addList);
 			//System.out.println(i + " :" + pkString[i+1].substring("#", "d"));
 		}
@@ -136,7 +138,7 @@ public class Panel_btn03 extends Panel_btn02{
 		// TODO Auto-generated method stub
 		int listCnt = 0; // PK Count 특정문자 카운터
 	    int fromIndex = -1;
-	    while ((fromIndex = target.indexOf("@", fromIndex + 1)) >= 0) {
+	    while ((fromIndex = target.indexOf(s, fromIndex + 1)) >= 0) {
 	    	listCnt++;
 	    }
 	    return listCnt;
@@ -144,8 +146,12 @@ public class Panel_btn03 extends Panel_btn02{
 
 	private String[] cutCount(String[] pkString) {
 		// TODO Auto-generated method stub
-		
-		return null;
+		String[] temp = new String[pkString.length];
+		for(int i=1; i<pkString.length; i++){
+			temp[i-1] = Integer.toString(charCount(pkString[i], "item"));
+			System.out.println(temp[i-1]);
+		}
+		return temp;
 	}
 
 	protected String subStringOut(String target, String c){ // String Segment Method

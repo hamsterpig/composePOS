@@ -43,7 +43,7 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 
 		
 		pa_c_eMenuBar = new JPanel(); // menuBar
-		pa_c_eMenuBar.setBackground(Color.yellow);
+		pa_c_eMenuBar.setBackground(new Color(255,255,183));
 		pa_c_eMenuBar.setPreferredSize(new Dimension(250,800));
 		pa_c_eMenuBar.setVisible(false);
 		
@@ -92,7 +92,7 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		pa_c_eMenuBar_List = new JPanel();
 		pa_c_eMenuBar_List.setPreferredSize(new Dimension(260,750));
 		
-		pa_c_eMenuBar_List.setBackground(Color.yellow);
+		pa_c_eMenuBar_List.setBackground(new Color(255,255,183));
 		lbLogo = new JLabel(); //·Î°í
 		pLogo.add(lbLogo);
 		pLogo.setOpaque(false);
