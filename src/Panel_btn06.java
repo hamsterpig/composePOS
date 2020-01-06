@@ -24,9 +24,11 @@ public class Panel_btn06 extends Panel_btn05{
 	JPanel pbtn6_s, pbtn6_n, pbtn6_c, pbtn6_e, pbtn6_w; // e
 	JLabel title06;
 	JLabel lbPColor;
-	JRadioButton rType01, rType02, rType03, rType04;
+	JRadioButton rType01, rType02, rType03, rType04; // Theme Color
+	JRadioButton rFont01, rFont02, rFont03, rFont04; // Font
 	JButton btnType01, btnType02, btnType03, btnType04;
-	ButtonGroup theme;
+	JButton btnFont01, btnFont02, btnFont03, btnFont04;
+	ButtonGroup gtheme, gfont;
 	JButton btn_Panel_Setting;
 	Panel_btn06(){
 		pbtn6_s = new JPanel();
@@ -54,11 +56,23 @@ public class Panel_btn06 extends Panel_btn05{
 		rType03 = new JRadioButton();
 		rType04 = new JRadioButton();
 		
-		theme = new ButtonGroup();
-		theme.add(rType01);
-		theme.add(rType02);
-		theme.add(rType03);
-		theme.add(rType04);
+		rFont01 = new JRadioButton(); // Font
+		rFont02 = new JRadioButton();
+		rFont03 = new JRadioButton();
+		rFont04 = new JRadioButton();; 
+		
+		gtheme = new ButtonGroup();
+		gtheme.add(rType01);
+		gtheme.add(rType02);
+		gtheme.add(rType03);
+		gtheme.add(rType04);
+		
+		gfont = new ButtonGroup();
+		gfont.add(rFont01);
+		gfont.add(rFont02);
+		gfont.add(rFont03);
+		gfont.add(rFont04);
+		
 		
 		btnType01 = new JButton();
 		btnType02 = new JButton();
@@ -82,18 +96,20 @@ public class Panel_btn06 extends Panel_btn05{
 		btnType03.addActionListener(this);
 		btnType04.addActionListener(this);
 		
-		JLabel lbTheme = new JLabel("≈◊∏∂ ");
-		JPanel pline01 = new JPanel();
+		JLabel lbTheme = new JLabel("≈◊∏∂"); // Theme Color
+		lbTheme.setHorizontalAlignment(lbTheme.CENTER);
+		lbTheme.setPreferredSize(new Dimension(100,100)); // will add Color
+		JPanel pline01 = new JPanel(); 
 		
 		//pline01.add(lbTheme);
-		pbtn6_c.add(lbTheme);
+		pbtn6_c.add(lbTheme); 
 		pline01.add(btnType01);
 		pline01.add(btnType02);
 		pline01.add(btnType03);
 		pline01.add(btnType04);
 		pbtn6_c.add(pline01);
 		pline01.setLayout(new FlowLayout(FlowLayout.LEADING));
-		pline01.setPreferredSize(new Dimension(900,100));
+		pline01.setPreferredSize(new Dimension(850,100));
 		pline01.setBackground(Color.white);
 		pline01.setLayout(new GridLayout(1,0));
 		
@@ -102,12 +118,69 @@ public class Panel_btn06 extends Panel_btn05{
 		btn_Panel_Setting.setPreferredSize(new Dimension(700,100));
 		pbtn6_n.add(btn_Panel_Setting);
 		
+		btnFont01 = new JButton();
+		btnFont02 = new JButton();
+		btnFont03 = new JButton();
+		btnFont04 = new JButton();
+		
+		
+		JPanel lbFontLine = new JPanel();
+		lbFontLine.setPreferredSize(new Dimension(1000, 15));
+		lbFontLine.setBackground(Color.yellow); // will add Color
+		pbtn6_c.add(lbFontLine);
+		
+		JLabel lbFont = new JLabel("∆˘∆Æ√º");
+		lbFont.setHorizontalAlignment(lbFont.CENTER);
+		JPanel pline02 = new JPanel();
+		lbFont.setPreferredSize(new Dimension(100,100)); // will add Color
+		
+		pbtn6_c.add(lbFont);
+		pbtn6_c.add(pline02);
+		pline02.add(btnFont01);
+		pline02.add(btnFont02);
+		pline02.add(btnFont03);
+		pline02.add(btnFont04);
+		
+		btnFont01.add(rFont01);
+		btnFont02.add(rFont02);
+		btnFont03.add(rFont03);
+		btnFont04.add(rFont04);
+		btnFont01.addActionListener(this);
+		btnFont02.addActionListener(this);
+		btnFont03.addActionListener(this);
+		btnFont04.addActionListener(this);
+		
+		JLabel lbFontEx01 = new JLabel("≥™¥Æ∞ÌµÒ");
+		JLabel lbFontEx02 = new JLabel("»ﬁ∏’∆Ì¡ˆ√º");
+		JLabel lbFontEx03 = new JLabel("«‘√ ∑’πŸ≈¡");
+		JLabel lbFontEx04 = new JLabel("¿±∞ÌµÒ");
+		
+		lbFontEx01.setFont(fontManager.nanum_PLAIN_15);
+		lbFontEx02.setFont(fontManager.latter_PLAIN_15);
+		lbFontEx03.setFont(fontManager.yun_PLAIN_15);
+		lbFontEx04.setFont(fontManager.cholong_PLAIN_15);
+		
+		btnFont01.setLayout(new GridLayout(1,0));
+		btnFont02.setLayout(new GridLayout(1,0));
+		btnFont03.setLayout(new GridLayout(1,0));
+		btnFont04.setLayout(new GridLayout(1,0));
+		
+		btnFont01.add(lbFontEx01);
+		btnFont02.add(lbFontEx02);
+		btnFont03.add(lbFontEx03);
+		btnFont04.add(lbFontEx04);
+		
+		pline02.setPreferredSize(new Dimension(850,100));
+		pline02.setBackground(Color.white);
+		pline02.setLayout(new GridLayout(1,0));
+		
+		
 		
 		
 	}
 	
 	protected void btn_Panel_Setting(){
-		if(rType01.isSelected()==true){
+		if(rType01.isSelected()==true){ // Theme
 			btn_TypeSetting("type1");
 		} else if(rType02.isSelected()==true){
 			btn_TypeSetting("type2");
@@ -116,6 +189,49 @@ public class Panel_btn06 extends Panel_btn05{
 		} else if(rType04.isSelected()==true){
 			btn_TypeSetting("type4");
 		}
+		
+		if(rFont01.isSelected()==true){
+			btn_FontFetting("type1");
+		} else if(rFont02.isSelected()==true){
+			btn_FontFetting("type2");
+		} else if(rFont03.isSelected()==true){
+			btn_FontFetting("type3");
+		} else if(rFont04.isSelected()==true){
+			btn_FontFetting("type4");
+		}
+	}
+
+	private void btn_FontFetting(String type) {
+		// TODO Auto-generated method stub
+		try {
+			FileWriter write3 = new FileWriter("src/db/font.txt");
+			write3.write(type);
+			write3.close();
+			setFontType(type);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void setFontType(String fontType) {
+		// TODO Auto-generated method stub
+		if(fontType.equals("type1")){
+			setFont();
+			System.out.println("≈∏¿‘1");
+		} else if(fontType.equals("type2")){
+			System.out.println("≈∏¿‘2");
+		} else if(fontType.equals("type3")){
+			System.out.println("≈∏¿‘3");
+		} else if(fontType.equals("type4")){
+			System.out.println("≈∏¿‘4");
+		} else{ // Default
+		}
+	}
+
+	private void setFont() { // add
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void btn_TypeSetting(String type) {

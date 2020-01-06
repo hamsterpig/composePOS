@@ -153,9 +153,9 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 			btnCash();
 		} else if(e.getSource()==btnCard){
 			btnCard();
-		} else if(e.getSource()==btn_Panel_Setting){
+		} else if(e.getSource()==btn_Panel_Setting){ // panel 06 - All Setting (Theme, Font)
 			btn_Panel_Setting();
-		} else if(e.getSource()==btnType01){ // panel 06
+		} else if(e.getSource()==btnType01){ // panel 06 - Theme
 			rType01.setSelected(true);
 		} else if(e.getSource()==btnType02){
 			rType02.setSelected(true);
@@ -163,6 +163,14 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 			rType03.setSelected(true);
 		} else if(e.getSource()==btnType04){
 			rType04.setSelected(true);
+		} else if(e.getSource()==btnFont01){ // panel 06 - Font
+			rFont01.setSelected(true);
+		} else if(e.getSource()==btnFont02){
+			rFont02.setSelected(true);
+		} else if(e.getSource()==btnFont03){
+			rFont03.setSelected(true);
+		} else if(e.getSource()==btnFont04){
+			rFont04.setSelected(true);
 		}
 		
 	} //btnCard, btnCash;
