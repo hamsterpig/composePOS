@@ -21,7 +21,7 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 	}
 	
 
-	private String getColorSetting() {
+	private String getColorSetting() { // Colir File read
 		String temp = "";
 		File file = new File("src/db/Color.txt"); //date
 		try{

@@ -11,6 +11,7 @@ public class FrameD extends JFrame{
 	JPanel pa;
 	JPanel pa_c, pa_n, pa_s, pa_w, p_e;
 	ColorManager colorManager = ColorManager.getInstance();
+	FontManager fontManager = FontManager.getInstance();
 	
 	FrameD(){
 		

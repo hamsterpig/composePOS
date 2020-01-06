@@ -140,6 +140,7 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		btn4 = new JButton("통계");
 		btn5 = new JButton("직원");
 		btn6 = new JButton("환경 설정");
+		
 		btnLogout.setPreferredSize(new Dimension(180,50));
 		btn1.setPreferredSize(new Dimension(180,60));
 		btn2.setPreferredSize(new Dimension(180,60));
