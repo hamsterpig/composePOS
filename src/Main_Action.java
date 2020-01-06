@@ -17,13 +17,40 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 		
 	Main_Action(){
 		String colorSetting = getColorSetting(); // get Theme Type (String);
+		String fontSetting = getFontSetting();
 		setThemeType(colorSetting);
+		setFontType(fontSetting);
 	}
 	
 
+	private String getFontSetting() {
+		// TODO Auto-generated method stub
+		String temp = "";
+		File file = new File("src/db/font.txt"); //date
+		try{
+			if(!file.exists()){ // file not
+				FileWriter check = new FileWriter("src/db/font.txt"); // new creat file
+			} else {
+				FileReader reader = new FileReader("src/db/font.txt"); // file Open
+				BufferedReader in = new BufferedReader(reader);
+				Scanner scan = new Scanner(reader);
+
+					String string;
+				    while ((string = in.readLine()) != null) {
+				    	temp = temp.concat(string);
+				    	//System.out.println(string);
+				      }
+				} 
+		} catch(IOException e){
+			
+		}
+		return temp;
+	}
+
+
 	private String getColorSetting() { // Colir File read
 		String temp = "";
-		File file = new File("src/db/Color.txt"); //date
+		File file = new File("src/db/color.txt"); //date
 		try{
 			if(!file.exists()){ // file not
 				FileWriter check = new FileWriter("src/db/color.txt"); // new creat file

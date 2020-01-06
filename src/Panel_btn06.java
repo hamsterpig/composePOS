@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -190,18 +191,18 @@ public class Panel_btn06 extends Panel_btn05{
 			btn_TypeSetting("type4");
 		}
 		
-		if(rFont01.isSelected()==true){
-			btn_FontFetting("type1");
+		if(rFont01.isSelected()==true){ // Font ≥™¥Æ∞ÌµÒ, »ﬁ∏’∆Ì¡ˆ√º, «‘√ ∑’πŸ≈¡, «—ƒƒ ¿±∞ÌµÒ 230
+			btn_FontTetting("≥™¥Æ∞ÌµÒ");
 		} else if(rFont02.isSelected()==true){
-			btn_FontFetting("type2");
+			btn_FontTetting("»ﬁ∏’∆Ì¡ˆ√º");
 		} else if(rFont03.isSelected()==true){
-			btn_FontFetting("type3");
+			btn_FontTetting("«‘√ ∑’πŸ≈¡");
 		} else if(rFont04.isSelected()==true){
-			btn_FontFetting("type4");
+			btn_FontTetting("«—ƒƒ ¿±∞ÌµÒ 230");
 		}
 	}
 
-	private void btn_FontFetting(String type) {
+	private void btn_FontTetting(String type) { // save
 		// TODO Auto-generated method stub
 		try {
 			FileWriter write3 = new FileWriter("src/db/font.txt");
@@ -214,24 +215,47 @@ public class Panel_btn06 extends Panel_btn05{
 		}
 	}
 
-	private void setFontType(String fontType) {
+	protected void setFontType(String fontType) { // /∏¶ ∆˜«‘ ¿˙¿Â. Split « ø‰ X
 		// TODO Auto-generated method stub
-		if(fontType.equals("type1")){
-			setFont();
+		if(fontType.equals("≥™¥Æ∞ÌµÒ")){
+			setFont("≥™¥Æ∞ÌµÒ", "plain", "15"); // ing
 			System.out.println("≈∏¿‘1");
-		} else if(fontType.equals("type2")){
+		} else if(fontType.equals("»ﬁ∏’∆Ì¡ˆ√º")){
+			setFont("»ﬁ∏’∆Ì¡ˆ√º", "plain", "15");
 			System.out.println("≈∏¿‘2");
-		} else if(fontType.equals("type3")){
+		} else if(fontType.equals("«‘√ ∑’πŸ≈¡")){
+			setFont("«‘√ ∑’πŸ≈¡", "plain", "15");
 			System.out.println("≈∏¿‘3");
-		} else if(fontType.equals("type4")){
+		} else if(fontType.equals("«—ƒƒ ¿±∞ÌµÒ 230")){
+			setFont("«—ƒƒ ¿±∞ÌµÒ 230", "plain", "15");
 			System.out.println("≈∏¿‘4");
 		} else{ // Default
 		}
 	}
 
-	private void setFont() { // add
+	private void setFont(String type, String bp, String size) { // add
 		// TODO Auto-generated method stub
-		
+		if(type.equals("≥™¥Æ∞ÌµÒ") && bp.equals("plain") && size.equals("15")){ // default
+			setFontManager(fontManager.nanum_PLAIN_15);
+		} else if(type.equals("»ﬁ∏’∆Ì¡ˆ√º") && bp.equals("plain") && size.equals("15")){
+			setFontManager(fontManager.latter_PLAIN_15);
+		} else if(type.equals("«‘√ ∑’πŸ≈¡") && bp.equals("plain") && size.equals("15")){
+			setFontManager(fontManager.cholong_PLAIN_15);
+		} else if(type.equals("«—ƒƒ ¿±∞ÌµÒ 230") && bp.equals("plain") && size.equals("15")){
+			setFontManager(fontManager.yun_PLAIN_15);
+		} else{ // default
+			setFontManager(fontManager.nanum_PLAIN_15);
+		}
+	}
+
+	private void setFontManager(Font setting) {
+		// TODO Auto-generated method stub
+		btn1.setFont(setting);
+		btn2.setFont(setting);
+		btn3.setFont(setting);
+		btn4.setFont(setting);
+		btn5.setFont(setting);
+		btn6.setFont(setting);
 	}
 
 	private void btn_TypeSetting(String type) {
