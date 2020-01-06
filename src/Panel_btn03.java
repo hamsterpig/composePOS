@@ -68,14 +68,11 @@ public class Panel_btn03 extends Panel_btn02{
 		
 	}
 	
-	protected void renewal() throws IOException{ 
+	protected void renewal() throws IOException{ // Payment Table renewal Method
 		String tempConcat = "";
 		while(tmPaymentList.getRowCount()>0){ // table reset
 			tmPaymentList.removeRow(0);
 		}
-		
-		
-		
 		
 		File file = new File("src/db/paymentDB.txt"); //date
 		if(!file.exists()){ // file not
@@ -113,8 +110,11 @@ public class Panel_btn03 extends Panel_btn02{
 		String dataPayment[] = new String[listCnt]; // add data
 		dataPayment = cutData(pkString);
 		
-		String countPayment[] = new String[listCnt];
+		String countPayment[] = new String[listCnt]; // add EA
 		countPayment = cutCount(pkString);
+		
+		String typePayment[] = new String[listCnt];
+		typePayment = cutType(pkString);
 		
 		for(int i=0; i<=listCnt; i++){
 			
@@ -123,7 +123,7 @@ public class Panel_btn03 extends Panel_btn02{
 		for(int i=0; i<listCnt; i++){ // 영수증번호   판매날짜   결제유형   상품개수   상품금액   할인금액   판매금액   
 			
 			pkInput = pkString[i+1].substring(0, 1);
-			String[] addList = {pkInput,dataPayment[i],"결제유형",countPayment[i],"상품금액","할인금액","판매금액"};
+			String[] addList = {pkInput,dataPayment[i],typePayment[i],countPayment[i],"상품금액","할인금액","판매금액"};
 			tmPaymentList.addRow(addList);
 			//System.out.println(i + " :" + pkString[i+1].substring("#", "d"));
 		}
@@ -134,6 +134,22 @@ public class Panel_btn03 extends Panel_btn02{
 		 // table add row
 		
 	}
+	
+	private String[] cutType(String[] pkString) { // Payment Tyep Array return Method
+		// TODO Auto-generated method stub
+		String[] temp = new String[pkString.length];
+		for(int i=1; i<pkString.length; i++){
+			if(charCount(pkString[i], "Card")>=1){
+				temp[i-1] = "Card";
+			} else if(charCount(pkString[i], "Cash")>=1){
+				temp[i-1] = "Cash";
+			}
+			
+		}
+		
+		return temp;
+	}
+
 	private int charCount(String target, String s) {
 		// TODO Auto-generated method stub
 		int listCnt = 0; // PK Count 특정문자 카운터
@@ -149,7 +165,6 @@ public class Panel_btn03 extends Panel_btn02{
 		String[] temp = new String[pkString.length];
 		for(int i=1; i<pkString.length; i++){
 			temp[i-1] = Integer.toString(charCount(pkString[i], "item"));
-			System.out.println(temp[i-1]);
 		}
 		return temp;
 	}

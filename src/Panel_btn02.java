@@ -599,7 +599,7 @@ public class Panel_btn02 extends Panel_btn01{
 				String string2;
 			    while ((string = in.readLine()) != null) {
 			    	tempConcat = tempConcat.concat("\n"+string);
-			    	System.out.println(string);
+			    	//System.out.println(string);
 			      }
 			    
 			    
