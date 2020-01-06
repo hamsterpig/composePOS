@@ -113,8 +113,17 @@ public class Panel_btn03 extends Panel_btn02{
 		String countPayment[] = new String[listCnt]; // add EA
 		countPayment = cutCount(pkString);
 		
-		String typePayment[] = new String[listCnt];
+		String typePayment[] = new String[listCnt]; // add type
 		typePayment = cutType(pkString);
+		
+		String totalPayment[] = new String[listCnt]; // add total
+		totalPayment = cutTotal(pkString);
+		
+		String disPayment[] = new String[listCnt]; // add dis
+		disPayment = cutDis(pkString);
+		
+		String needPayment[] = new String[listCnt];
+		needPayment = cutNeed(pkString);
 		
 		for(int i=0; i<=listCnt; i++){
 			
@@ -123,7 +132,7 @@ public class Panel_btn03 extends Panel_btn02{
 		for(int i=0; i<listCnt; i++){ // 영수증번호   판매날짜   결제유형   상품개수   상품금액   할인금액   판매금액   
 			
 			pkInput = pkString[i+1].substring(0, 1);
-			String[] addList = {pkInput,dataPayment[i],typePayment[i],countPayment[i],"상품금액","할인금액","판매금액"};
+			String[] addList = {pkInput,dataPayment[i],typePayment[i],countPayment[i],totalPayment[i],disPayment[i],needPayment[i]};
 			tmPaymentList.addRow(addList);
 			//System.out.println(i + " :" + pkString[i+1].substring("#", "d"));
 		}
@@ -135,6 +144,81 @@ public class Panel_btn03 extends Panel_btn02{
 		
 	}
 	
+	private String[] cutNeed(String[] pkString) { // return Need
+		// TODO Auto-generated method stub
+		String[] temp = new String[pkString.length];
+		String[] temp2; //split
+		String[] jTemp = new String[30];
+		String[] jTemp2 = new String[30];
+		String[] jTemp3 = new String[30];
+		
+		for(int i=1; i<pkString.length; i++){
+			temp2 = pkString[i].split("!");
+			for(int j=0; j<temp2.length; j++){
+				jTemp[i] = temp2[j];
+				jTemp2[i] = jTemp[i];
+				//jTemp[j] = temp2[j];
+			}
+			temp2 = jTemp2[i].split("/");
+			for(int j=0; j<temp2.length; j++){  // Line 0-Total / 1-Dis / 2-Need
+				jTemp3[j] = temp2[j];
+			}
+			temp[i-1] = jTemp3[2]; // 2-Need	
+		}
+		return temp;
+	}
+
+	private String[] cutDis(String[] pkString) { // return Dis
+		// TODO Auto-generated method stub
+		String[] temp = new String[pkString.length];
+		String[] temp2; //split
+		String[] jTemp = new String[30];
+		String[] jTemp2 = new String[30];
+		String[] jTemp3 = new String[30];
+		
+		for(int i=1; i<pkString.length; i++){
+			temp2 = pkString[i].split("!");
+			for(int j=0; j<temp2.length; j++){
+				jTemp[i] = temp2[j];
+				jTemp2[i] = jTemp[i];
+				//jTemp[j] = temp2[j];
+			}
+			temp2 = jTemp2[i].split("/");
+			for(int j=0; j<temp2.length; j++){  // Line 0-Total / 1-Dis / 2-Need
+				jTemp3[j] = temp2[j];
+			}
+			temp[i-1] = jTemp3[1]; // 1-Dis
+		}
+		return temp;
+	}
+
+	private String[] cutTotal(String[] pkString) { // return Total
+		// TODO Auto-generated method stub
+		String[] temp = new String[pkString.length];
+		String[] temp2; //split
+		String[] jTemp = new String[30];
+		String[] jTemp2 = new String[30];
+		String[] jTemp3 = new String[30];
+
+		for(int i=1; i<pkString.length; i++){
+			temp2 = pkString[i].split("!");
+			for(int j=0; j<temp2.length; j++){
+				jTemp[i] = temp2[j];
+				jTemp2[i] = jTemp[i];
+				
+			}
+			
+			temp2 = jTemp2[i].split("/");
+			for(int j=0; j<temp2.length; j++){  // Line 0-Total / 1-Dis / 2-Need
+				//System.out.println(j+" :"+temp2[j]);
+				jTemp3[j] = temp2[j];
+			}
+			
+			temp[i-1] = jTemp3[0]; // 0-total	
+		}
+		return temp;
+	}
+
 	private String[] cutType(String[] pkString) { // Payment Tyep Array return Method
 		// TODO Auto-generated method stub
 		String[] temp = new String[pkString.length];
@@ -145,8 +229,7 @@ public class Panel_btn03 extends Panel_btn02{
 				temp[i-1] = "Cash";
 			}
 			
-		}
-		
+		}	
 		return temp;
 	}
 

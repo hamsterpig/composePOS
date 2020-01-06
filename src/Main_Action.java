@@ -127,6 +127,8 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 			btnCash();
 		} else if(e.getSource()==btnCard){
 			btnCard();
+		} else if(e.getSource()==btn_Panel_Setting){
+			btn_Panel_Setting();
 		}
 		
 	} //btnCard, btnCash;

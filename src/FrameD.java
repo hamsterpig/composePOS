@@ -31,6 +31,7 @@ public class FrameD extends JFrame{
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

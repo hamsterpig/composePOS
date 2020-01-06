@@ -137,9 +137,9 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		btn1 = new JButton("가맹점 정보");
 		btn2 = new JButton("주문");
 		btn3 = new JButton("주문 내역");
-		btn4 = new JButton("발주");
-		btn5 = new JButton("발주 내역");
-		btn6 = new JButton("매출 관리");
+		btn4 = new JButton("통계");
+		btn5 = new JButton("직원");
+		btn6 = new JButton("환경 설정");
 		btnLogout.setPreferredSize(new Dimension(180,50));
 		btn1.setPreferredSize(new Dimension(180,60));
 		btn2.setPreferredSize(new Dimension(180,60));

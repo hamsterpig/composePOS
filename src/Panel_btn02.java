@@ -630,11 +630,12 @@ public class Panel_btn02 extends Panel_btn01{
 				temp[i][j] = (String) tm.getValueAt(i, j);
 				tempConcat = tempConcat.concat(temp[i][j]);
 				//System.out.println(temp[i][j]);
-				tempConcat = tempConcat.concat("/item");
+				tempConcat = tempConcat.concat("/");
 			}
+			tempConcat = tempConcat.concat("item");
 			tempConcat = tempConcat.concat("\n");
 		}
-		tempConcat = tempConcat.concat(priceTotal+"/"+priceDis+"/"+priceNeed+"/"+type+"\n");
+		tempConcat = tempConcat.concat("!"+priceTotal+"/"+priceDis+"/"+priceNeed+"/"+type+"\n");
 		tempConcat = tempConcat.concat("#"+timeNow); // yyyy mm dd
 		
 		
