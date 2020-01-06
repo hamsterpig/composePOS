@@ -17,6 +17,47 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 public class Main_Action extends Panel_btn06 implements ActionListener{
+	
+	Main_Action(){
+		
+		ColorManager colorManager = ColorManager.getInstance();		
+		String themeColor = "type3";
+		
+		if(themeColor.equals("type1")){
+			setTheme(colorManager.redBg, colorManager.redBtn, colorManager.redLine); // Theme Red
+		} else if(themeColor.equals("type2")){
+			setTheme(colorManager.greenBg, colorManager.greenBtn, colorManager.greenLine); // Theme Green
+		} else if(themeColor.equals("type3")){
+			setTheme(colorManager.blueBg, colorManager.blueBtn, colorManager.blueLine); // Theme Blue
+		} else if(themeColor.equals("type4")){
+			setTheme(colorManager.yellowBg, colorManager.yellowBtn, colorManager.yellowLine); // Theme yellow
+		}
+	}
+	
+	private void setTheme(Color c, Color btnC, Color lineC){
+		pa_c_eMenuBar.setBackground(c);
+		pa_c_cManuField.setBackground(c);
+		pa_c_eMenuBar_List.setBackground(c);
+		pbtn02_c_menu.setBackground(c);
+		pad_n.setBackground(c);
+		pad_c.setBackground(c);
+		pad_s.setBackground(c);
+		
+		for(int i=0; i<btnMenu.length; i++){
+			btnMenu[i].setBackground(btnC);
+		}
+		btn1.setBackground(btnC);
+		btn2.setBackground(btnC);
+		btn3.setBackground(btnC);
+		btn4.setBackground(btnC);
+		btn5.setBackground(btnC);
+		btn6.setBackground(btnC);
+		pad_n_line01.setBackground(lineC);
+		pad_n_line02.setBackground(lineC);
+		pad_n_line03.setBackground(lineC);
+		pad_n_line04.setBackground(lineC);
+		pad_n_line05.setBackground(lineC);
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -129,6 +170,14 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 			btnCard();
 		} else if(e.getSource()==btn_Panel_Setting){
 			btn_Panel_Setting();
+		} else if(e.getSource()==btnType01){ // panel 06
+			rType01.setSelected(true);
+		} else if(e.getSource()==btnType02){
+			rType02.setSelected(true);
+		} else if(e.getSource()==btnType03){
+			rType03.setSelected(true);
+		} else if(e.getSource()==btnType04){
+			rType04.setSelected(true);
 		}
 		
 	} //btnCard, btnCash;

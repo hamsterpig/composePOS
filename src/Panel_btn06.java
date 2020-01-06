@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +23,7 @@ public class Panel_btn06 extends Panel_btn05{
 	JLabel title06;
 	JLabel lbPColor;
 	JRadioButton rType01, rType02, rType03, rType04;
-	JPanel pType01, pType02, pType03, pType04;
+	JButton btnType01, btnType02, btnType03, btnType04;
 	ButtonGroup theme;
 	JButton btn_Panel_Setting;
 	Panel_btn06(){
@@ -57,40 +58,48 @@ public class Panel_btn06 extends Panel_btn05{
 		theme.add(rType03);
 		theme.add(rType04);
 		
-		pType01 = new JPanel();
-		pType02 = new JPanel();
-		pType03 = new JPanel();
-		pType04 = new JPanel();
+		btnType01 = new JButton();
+		btnType02 = new JButton();
+		btnType03 = new JButton();
+		btnType04 = new JButton();
 		
-		pType01.add(rType01);
-		pType02.add(rType02);
-		pType03.add(rType03);
-		pType04.add(rType04);
-		pType01.setPreferredSize(new Dimension(200,80));
-		pType02.setPreferredSize(new Dimension(200,80));
-		pType03.setPreferredSize(new Dimension(200,80));
-		pType04.setPreferredSize(new Dimension(200,80));
-		pType01.setBackground(new Color(255,80,80));
-		pType02.setBackground(new Color(80,255,80));
-		pType03.setBackground(new Color(80,80,255));
-		pType04.setBackground(new Color(255,255,183)); // default
+		btnType01.add(rType01);
+		btnType02.add(rType02);
+		btnType03.add(rType03);
+		btnType04.add(rType04);
+		btnType01.setPreferredSize(new Dimension(200,80));
+		btnType02.setPreferredSize(new Dimension(200,80));
+		btnType03.setPreferredSize(new Dimension(200,80));
+		btnType04.setPreferredSize(new Dimension(200,80));
+		btnType01.setBackground(new Color(255,80,80));
+		btnType02.setBackground(new Color(80,255,80));
+		btnType03.setBackground(new Color(80,80,255));
+		btnType04.setBackground(new Color(255,255,183)); // default
+		btnType01.addActionListener(this);
+		btnType02.addActionListener(this);
+		btnType03.addActionListener(this);
+		btnType04.addActionListener(this);
 		
 		JLabel lbTheme = new JLabel("테마 ");
 		JPanel pline01 = new JPanel();
-		pline01.add(lbTheme);
-		pline01.add(pType01);
-		pline01.add(pType02);
-		pline01.add(pType03);
-		pline01.add(pType04);
+		
+		//pline01.add(lbTheme);
+		pbtn6_c.add(lbTheme);
+		pline01.add(btnType01);
+		pline01.add(btnType02);
+		pline01.add(btnType03);
+		pline01.add(btnType04);
 		pbtn6_c.add(pline01);
 		pline01.setLayout(new FlowLayout(FlowLayout.LEADING));
-		pline01.setPreferredSize(new Dimension(1000,100));
+		pline01.setPreferredSize(new Dimension(900,100));
 		pline01.setBackground(Color.white);
+		pline01.setLayout(new GridLayout(1,0));
 		
 		btn_Panel_Setting = new JButton("설정 적용");
 		btn_Panel_Setting.addActionListener(this);
 		btn_Panel_Setting.setPreferredSize(new Dimension(700,100));
 		pbtn6_n.add(btn_Panel_Setting);
+		
 		
 		
 	}

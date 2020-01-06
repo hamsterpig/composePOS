@@ -43,12 +43,12 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 
 		
 		pa_c_eMenuBar = new JPanel(); // menuBar
-		pa_c_eMenuBar.setBackground(new Color(255,255,183));
+		//pa_c_eMenuBar.setBackground(new Color(255,255,183));
 		pa_c_eMenuBar.setPreferredSize(new Dimension(250,800));
 		pa_c_eMenuBar.setVisible(false);
 		
 		pa_c_cManuField = new JPanel(); // menuMain
-		pa_c_cManuField.setBackground(Color.WHITE);
+		//pa_c_cManuField.setBackground(Color.WHITE);
 		pa_c_cManuField.setPreferredSize(new Dimension(800,800));
 		pa_c_cManuField.setVisible(false);
 
@@ -92,7 +92,7 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		pa_c_eMenuBar_List = new JPanel();
 		pa_c_eMenuBar_List.setPreferredSize(new Dimension(260,750));
 		
-		pa_c_eMenuBar_List.setBackground(new Color(255,255,183));
+		//pa_c_eMenuBar_List.setBackground(new Color(255,255,183));
 		lbLogo = new JLabel(); //·Î°í
 		pLogo.add(lbLogo);
 		pLogo.setOpaque(false);
@@ -148,12 +148,12 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		btn5.setPreferredSize(new Dimension(180,60));
 		btn6.setPreferredSize(new Dimension(180,60));
 		btnLogout.setBackground(new Color(255,50,50));
-		btn1.setBackground(new Color(255,255,125));
-		btn2.setBackground(new Color(255,255,125));
-		btn3.setBackground(new Color(255,255,125));
-		btn4.setBackground(new Color(255,255,125));
-		btn5.setBackground(new Color(255,255,125));
-		btn6.setBackground(new Color(255,255,125));
+		//btn1.setBackground(new Color(255,255,125));
+		//btn2.setBackground(new Color(255,255,125));
+		//btn3.setBackground(new Color(255,255,125));
+		//btn4.setBackground(new Color(255,255,125));
+		//btn5.setBackground(new Color(255,255,125));
+		//btn6.setBackground(new Color(255,255,125));
 		btn1.addActionListener(this);
 		btn2.addActionListener(this);
 		btn3.addActionListener(this);

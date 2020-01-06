@@ -40,6 +40,11 @@ public class Panel_btn02 extends Panel_btn01{
 	Dialog_Cash dialog_cash;
 	Dialog_Card dialog_card;
 	
+	JPanel pbtn02_c_menu, pad_n, pad_s, pad_c;
+	JPanel pad_n_line01, pad_n_line02, pad_n_line03, pad_n_line04, pad_n_line05, pad_n_line06, pad_n_line07;
+
+	
+	
 	static int toDayOrderNum=0;
 	
 	//int[] intEA = new int
@@ -62,11 +67,11 @@ public class Panel_btn02 extends Panel_btn01{
 		JPanel pbtn02_n_Table = new JPanel(); // add Price Table
 		pbtn02_n.add(pbtn02_n_Table);
 		pbtn02_n.setLayout(new FlowLayout(FlowLayout.LEADING));
-		JPanel pbtn02_c_menu = new JPanel(); // add menu Button tab
+		pbtn02_c_menu = new JPanel(); // add menu Button tab
 		pbtn02_c.add(pbtn02_c_menu);
 		pbtn02_c.setLayout(new FlowLayout(FlowLayout.LEADING));
 		pbtn02_c_menu.setPreferredSize(new Dimension(650, 350));
-		pbtn02_c_menu.setBackground(new Color(255,255,150));
+		//pbtn02_c_menu.setBackground(new Color(255,255,150));
 		
 		
 		String[] columnName = {"상품명","수량","정가","부가세","금액"}; // table columnName
@@ -104,7 +109,7 @@ public class Panel_btn02 extends Panel_btn01{
 				default : btnMenu[i] = new JButton("null"); break;
 			}
 			btnMenu[i].setPreferredSize(new Dimension(150,80));
-			btnMenu[i].setBackground(new Color(255,255,183));
+			//btnMenu[i].setBackground(new Color(255,255,183));
 			pbtn02_c_menu.add(btnMenu[i]);
 			btnMenu[i].addActionListener(this);
 		}
@@ -113,14 +118,14 @@ public class Panel_btn02 extends Panel_btn01{
 		pbtn02_w.add(pad);
 		pad.setPreferredSize(new Dimension(300,780));
 		//pad.setBackground(new Color(255,153,153));
-		JPanel pad_n = new JPanel();
-		JPanel pad_c = new JPanel();
-		JPanel pad_s = new JPanel();
+		pad_n = new JPanel();
+		pad_c = new JPanel();
+		pad_s = new JPanel();
 		pad.add(pad_n, BorderLayout.PAGE_START);
 		pad.add(pad_c, BorderLayout.CENTER);
 		pad.add(pad_s, BorderLayout.PAGE_END);
 		pad_n.setPreferredSize(new Dimension(250,330));
-		pad_n.setBackground(new Color(255,255,204));
+		//pad_n.setBackground(new Color(255,255,204));
 		
 		lbTotal = new JLabel("총매출액");
 		lbDis = new JLabel("할인금액");
@@ -147,13 +152,13 @@ public class Panel_btn02 extends Panel_btn01{
 		txStateFeild.setEditable(false);
 		txStateFeild.setPreferredSize(new Dimension(240,40));
 		
-		JPanel pad_n_line01 = new JPanel();
-		JPanel pad_n_line02 = new JPanel();
-		JPanel pad_n_line03 = new JPanel();
-		JPanel pad_n_line04 = new JPanel();
-		JPanel pad_n_line05 = new JPanel();
-		JPanel pad_n_line06 = new JPanel();
-		JPanel pad_n_line07 = new JPanel();
+		pad_n_line01 = new JPanel();
+		pad_n_line02 = new JPanel();
+		pad_n_line03 = new JPanel();
+		pad_n_line04 = new JPanel();
+		pad_n_line05 = new JPanel();
+		pad_n_line06 = new JPanel();
+		pad_n_line07 = new JPanel();
 		
 		lbMessage = new JLabel();
 		lbMessage.setBackground(Color.red);
@@ -173,11 +178,11 @@ public class Panel_btn02 extends Panel_btn01{
 		pad_n_line05.add(txOutput);
 		pad_n_line06.add(lbMessage);
 		pad_n_line07.add(txStateFeild);
-		pad_n_line01.setBackground(new Color(255,255,102));
-		pad_n_line02.setBackground(new Color(255,255,102));
-		pad_n_line03.setBackground(new Color(255,255,102));
-		pad_n_line04.setBackground(new Color(255,255,102));
-		pad_n_line05.setBackground(new Color(255,255,102));
+		//pad_n_line01.setBackground(new Color(255,255,102));
+		//pad_n_line02.setBackground(new Color(255,255,102));
+		//pad_n_line03.setBackground(new Color(255,255,102));
+		//pad_n_line04.setBackground(new Color(255,255,102));
+		//pad_n_line05.setBackground(new Color(255,255,102));
 		pad_n_line06.setBackground(new Color(204,204,255));
 		pad_n_line07.setBackground(new Color(255,120,120));
 		
@@ -189,10 +194,10 @@ public class Panel_btn02 extends Panel_btn01{
 		pad_n.add(pad_n_line06);
 		pad_n.add(pad_n_line07);
 		
-		pad_c.setBackground(new Color(255,255,204));
+		//pad_c.setBackground(new Color(255,255,204));
 		pad_c.setPreferredSize(new Dimension(250,250));
 		
-		pad_s.setBackground(new Color(255,255,204));
+		//pad_s.setBackground(new Color(255,255,204));
 		pad_s.setPreferredSize(new Dimension(250,180));
 		
 		btnAllClear = new JButton("A/C");
