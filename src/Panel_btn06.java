@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -106,13 +108,66 @@ public class Panel_btn06 extends Panel_btn05{
 	
 	protected void btn_Panel_Setting(){
 		if(rType01.isSelected()==true){
-			System.out.println("1타입 선택");
+			btn_TypeSetting("type1");
 		} else if(rType02.isSelected()==true){
-			System.out.println("2타입 선택");
+			btn_TypeSetting("type2");
 		} else if(rType03.isSelected()==true){
-			System.out.println("3타입 선택");
+			btn_TypeSetting("type3");
 		} else if(rType04.isSelected()==true){
-			System.out.println("4타입 선택");
+			btn_TypeSetting("type4");
 		}
+	}
+
+	private void btn_TypeSetting(String type) {
+		// TODO Auto-generated method stub
+		try {
+			FileWriter write3 = new FileWriter("src/db/color.txt");
+			write3.write(type);
+			write3.close();
+			setThemeType(type);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	protected void setThemeType(String colorType) {
+		// TODO Auto-generated method stub
+		if(colorType.equals("type1")){
+			setTheme(colorManager.redBg, colorManager.redBtn, colorManager.redLine); // Theme Red
+		} else if(colorType.equals("type2")){
+			setTheme(colorManager.greenBg, colorManager.greenBtn, colorManager.greenLine); // Theme Green
+		} else if(colorType.equals("type3")){
+			setTheme(colorManager.blueBg, colorManager.blueBtn, colorManager.blueLine); // Theme Blue
+		} else if(colorType.equals("type4")){
+			setTheme(colorManager.yellowBg, colorManager.yellowBtn, colorManager.yellowLine); // Theme yellow
+		} else{ // Default
+			setTheme(colorManager.yellowBg, colorManager.yellowBtn, colorManager.yellowLine); // Theme yellow
+		}
+	}
+	
+	private void setTheme(Color c, Color btnC, Color lineC){
+		pa_c_eMenuBar.setBackground(c);
+		pa_c_cManuField.setBackground(c);
+		pa_c_eMenuBar_List.setBackground(c);
+		pbtn02_c_menu.setBackground(c);
+		pad_n.setBackground(c);
+		pad_c.setBackground(c);
+		pad_s.setBackground(c);
+		
+		for(int i=0; i<btnMenu.length; i++){
+			btnMenu[i].setBackground(btnC);
+		}
+		btn1.setBackground(btnC);
+		btn2.setBackground(btnC);
+		btn3.setBackground(btnC);
+		btn4.setBackground(btnC);
+		btn5.setBackground(btnC);
+		btn6.setBackground(btnC);
+		pad_n_line01.setBackground(lineC);
+		pad_n_line02.setBackground(lineC);
+		pad_n_line03.setBackground(lineC);
+		pad_n_line04.setBackground(lineC);
+		pad_n_line05.setBackground(lineC);
 	}
 }

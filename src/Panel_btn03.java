@@ -86,7 +86,6 @@ public class Panel_btn03 extends Panel_btn02{
 				String string;
 			    while ((string = in.readLine()) != null) {
 			    	tempConcat = tempConcat.concat("\n"+string);
-			    	System.out.println(string);
 			      }
 			} catch(Exception e){
 				
@@ -94,11 +93,9 @@ public class Panel_btn03 extends Panel_btn02{
 			reader.close();
 			tempConcat = tempConcat.concat("\n");
 		}
-		//System.out.println(tempConcat);
 		
 		int listCnt = charCount(tempConcat, "@"); // char cont method
 
-	    //System.out.println(listCnt);
 
 
 
@@ -134,12 +131,9 @@ public class Panel_btn03 extends Panel_btn02{
 			pkInput = pkString[i+1].substring(0, 1);
 			String[] addList = {pkInput,dataPayment[i],typePayment[i],countPayment[i],totalPayment[i],disPayment[i],needPayment[i]};
 			tmPaymentList.addRow(addList);
-			//System.out.println(i + " :" + pkString[i+1].substring("#", "d"));
 		}
 		
-		
-		
-		
+
 		 // table add row
 		
 	}
@@ -210,7 +204,6 @@ public class Panel_btn03 extends Panel_btn02{
 			
 			temp2 = jTemp2[i].split("/");
 			for(int j=0; j<temp2.length; j++){  // Line 0-Total / 1-Dis / 2-Need
-				//System.out.println(j+" :"+temp2[j]);
 				jTemp3[j] = temp2[j];
 			}
 			
@@ -262,8 +255,7 @@ public class Panel_btn03 extends Panel_btn02{
 	protected String[] cutData(String[] pkString) { // date Segment
 		// TODO Auto-generated method stub
 		String temp[] = new String[pkString.length];
-		
-		System.out.println(pkString[1]);
+	
 		for(int i=1; i<(pkString.length); i++){
 			temp[i-1] = subStringOut(pkString[i], "#");
 		}

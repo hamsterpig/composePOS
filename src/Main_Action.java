@@ -1,62 +1,47 @@
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
-import javax.swing.border.Border;
 
 public class Main_Action extends Panel_btn06 implements ActionListener{
-	
+		
+		
 	Main_Action(){
-		
-		ColorManager colorManager = ColorManager.getInstance();		
-		String themeColor = "type3";
-		
-		if(themeColor.equals("type1")){
-			setTheme(colorManager.redBg, colorManager.redBtn, colorManager.redLine); // Theme Red
-		} else if(themeColor.equals("type2")){
-			setTheme(colorManager.greenBg, colorManager.greenBtn, colorManager.greenLine); // Theme Green
-		} else if(themeColor.equals("type3")){
-			setTheme(colorManager.blueBg, colorManager.blueBtn, colorManager.blueLine); // Theme Blue
-		} else if(themeColor.equals("type4")){
-			setTheme(colorManager.yellowBg, colorManager.yellowBtn, colorManager.yellowLine); // Theme yellow
-		}
+		String colorSetting = getColorSetting(); // get Theme Type (String);
+		setThemeType(colorSetting);
 	}
 	
-	private void setTheme(Color c, Color btnC, Color lineC){
-		pa_c_eMenuBar.setBackground(c);
-		pa_c_cManuField.setBackground(c);
-		pa_c_eMenuBar_List.setBackground(c);
-		pbtn02_c_menu.setBackground(c);
-		pad_n.setBackground(c);
-		pad_c.setBackground(c);
-		pad_s.setBackground(c);
-		
-		for(int i=0; i<btnMenu.length; i++){
-			btnMenu[i].setBackground(btnC);
+
+	private String getColorSetting() {
+		String temp = "";
+		File file = new File("src/db/Color.txt"); //date
+		try{
+			if(!file.exists()){ // file not
+				FileWriter check = new FileWriter("src/db/color.txt"); // new creat file
+			} else {
+				FileReader reader = new FileReader("src/db/color.txt"); // file Open
+				BufferedReader in = new BufferedReader(reader);
+				Scanner scan = new Scanner(reader);
+
+					String string;
+				    while ((string = in.readLine()) != null) {
+				    	temp = temp.concat(string);
+				    	//System.out.println(string);
+				      }
+				} 
+		} catch(IOException e){
+			
 		}
-		btn1.setBackground(btnC);
-		btn2.setBackground(btnC);
-		btn3.setBackground(btnC);
-		btn4.setBackground(btnC);
-		btn5.setBackground(btnC);
-		btn6.setBackground(btnC);
-		pad_n_line01.setBackground(lineC);
-		pad_n_line02.setBackground(lineC);
-		pad_n_line03.setBackground(lineC);
-		pad_n_line04.setBackground(lineC);
-		pad_n_line05.setBackground(lineC);
+		return temp;
 	}
 
 	public static void main(String[] args) {

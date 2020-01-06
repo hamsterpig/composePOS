@@ -579,7 +579,7 @@ public class Panel_btn02 extends Panel_btn01{
 		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss"); 	
 		Date time = new Date();
 		timeNow = format1.format(time);
-		System.out.println(timeNow); // time save
+		//System.out.println(timeNow); // time save
 		
 		File file = new File("src/db/paymentDB.txt"); //date
 		File fileNum = new File("src/db/paymentDB_PK.txt"); 

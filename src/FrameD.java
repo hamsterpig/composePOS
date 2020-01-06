@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -9,6 +10,7 @@ public class FrameD extends JFrame{
 	
 	JPanel pa;
 	JPanel pa_c, pa_n, pa_s, pa_w, p_e;
+	ColorManager colorManager = ColorManager.getInstance();
 	
 	FrameD(){
 		
@@ -31,6 +33,8 @@ public class FrameD extends JFrame{
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
+	
+
 	
 
 	public static void main(String[] args) {
