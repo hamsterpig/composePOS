@@ -97,7 +97,7 @@ public class Panel_btn05 extends Panel_btn04{
 		btnDelStaff.addActionListener(this);
 		btnDelStaff.setPreferredSize(new Dimension(150,80));
 		btnDelStaff.setBackground(colorManager.blueBtn);
-		btnDelStaff.setText("선택 해고");
+		btnDelStaff.setText("해고");
 		pbtn5_s.setPreferredSize(new Dimension(800,100));
 		pbtn5_s.setBackground(colorManager.blueLine);
 		pbtn5_s.add(btnDelStaff);

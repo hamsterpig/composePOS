@@ -9,7 +9,6 @@ public class ColorManager {
 	public Color yellowBg, yellowBtn, yellowLine;
 	
 	
-	
 	private ColorManager(){
 		
 		redBg = new Color(255,190,190);
@@ -22,11 +21,11 @@ public class ColorManager {
 		
 		blueBg = new Color(190,190,255);
 		blueBtn = new Color(205,205,255);
-		blueLine = new Color(140,160,255); // Theme Green
+		blueLine = new Color(140,160,255); // Theme blue
 		
 		yellowBg = new Color(255,255,183);
 		yellowBtn = new Color(255,255,205);
-		yellowLine = new Color(255,255,130); // Theme Blue
+		yellowLine = new Color(255,255,130); // Theme yellow
 		
 		
 	}

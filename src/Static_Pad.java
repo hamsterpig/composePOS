@@ -9,7 +9,15 @@ public class Static_Pad {
 	private static String staticTxStateFeild="0";
 	private static String staticTxOutput="0";
 	private static boolean cashPayment = false;
+	private static String staticAddStaff = "";
 	
+	
+	public static String getStaticAddStaff() {
+		return staticTxTotal;
+	}
+	public static void setStaticAddStaff(String s){
+		staticAddStaff = s;
+	}
 	
 	public static String getStaticTxTotal() {
 		return staticTxTotal;
