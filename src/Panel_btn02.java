@@ -95,12 +95,12 @@ public class Panel_btn02 extends Panel_btn01{
 				case 2: btnMenu[i] = new JButton("Ä«Æä¶ó¶¼ 2000"); break;
 				case 3: btnMenu[i] = new JButton("¹Ù´Ò¶ó¶ó¶¼ 2000"); break;
 				case 4: btnMenu[i] = new JButton("ÇìÀÌ´Ã³Ó¶ó¶¼ 2000"); break;
-				case 5: btnMenu[i] = new JButton("Ä«¶ó¸á¸¶³¢¾ß¶Ç 2500"); break;
+				case 5: btnMenu[i] = new JButton("¹Ù´Ò¶ó¶ó¶¼ 2500"); break;
 				case 6: btnMenu[i] = new JButton("Ä«Æä¸ðÄ« 2500"); break;
 				case 7: btnMenu[i] = new JButton("±×¸°Æ¼¶ó¶¼ 3000"); break;
 				case 8: btnMenu[i] = new JButton("°í±¸¸¶¶ó¶¼ 3000"); break;
 				case 9: btnMenu[i] = new JButton("°î¹°¶ó¶¼ 3000"); break;
-				case 10: btnMenu[i] = new JButton("ÃÊÄÚ¿À·¹¿À¶ó¶¼ 3000"); break;
+				case 10: btnMenu[i] = new JButton("¿À·¹¿À¶ó¶¼ 3000"); break;
 				case 11: btnMenu[i] = new JButton("¹ÎÆ®ÃÊÄÚ¶ó¶¼ 3000"); break;
 				case 12: btnMenu[i] = new JButton("ºí·çº£¸®½º¹«µð 3000"); break;
 				case 13: btnMenu[i] = new JButton("µþ±â½º¹«µð 3000"); break;

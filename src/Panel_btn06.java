@@ -219,16 +219,12 @@ public class Panel_btn06 extends Panel_btn05{
 		// TODO Auto-generated method stub
 		if(fontType.equals("≥™¥Æ∞ÌµÒ")){
 			setFont("≥™¥Æ∞ÌµÒ", "plain", "15"); // ing
-			System.out.println("≈∏¿‘1");
 		} else if(fontType.equals("»ﬁ∏’∆Ì¡ˆ√º")){
 			setFont("»ﬁ∏’∆Ì¡ˆ√º", "plain", "15");
-			System.out.println("≈∏¿‘2");
 		} else if(fontType.equals("«‘√ ∑’πŸ≈¡")){
 			setFont("«‘√ ∑’πŸ≈¡", "plain", "15");
-			System.out.println("≈∏¿‘3");
 		} else if(fontType.equals("«—ƒƒ ¿±∞ÌµÒ 230")){
 			setFont("«—ƒƒ ¿±∞ÌµÒ 230", "plain", "15");
-			System.out.println("≈∏¿‘4");
 		} else{ // Default
 		}
 	}
@@ -236,15 +232,15 @@ public class Panel_btn06 extends Panel_btn05{
 	private void setFont(String type, String bp, String size) { // add
 		// TODO Auto-generated method stub
 		if(type.equals("≥™¥Æ∞ÌµÒ") && bp.equals("plain") && size.equals("15")){ // default
-			setFontManager(fontManager.nanum_PLAIN_15);
+			setFontManager(fontManager.nanum_PLAIN_13);
 		} else if(type.equals("»ﬁ∏’∆Ì¡ˆ√º") && bp.equals("plain") && size.equals("15")){
-			setFontManager(fontManager.latter_PLAIN_15);
+			setFontManager(fontManager.latter_PLAIN_13);
 		} else if(type.equals("«‘√ ∑’πŸ≈¡") && bp.equals("plain") && size.equals("15")){
-			setFontManager(fontManager.cholong_PLAIN_15);
+			setFontManager(fontManager.cholong_PLAIN_13);
 		} else if(type.equals("«—ƒƒ ¿±∞ÌµÒ 230") && bp.equals("plain") && size.equals("15")){
-			setFontManager(fontManager.yun_PLAIN_15);
+			setFontManager(fontManager.yun_PLAIN_13);
 		} else{ // default
-			setFontManager(fontManager.nanum_PLAIN_15);
+			setFontManager(fontManager.yun_PLAIN_13);
 		}
 	}
 
@@ -256,6 +252,28 @@ public class Panel_btn06 extends Panel_btn05{
 		btn4.setFont(setting);
 		btn5.setFont(setting);
 		btn6.setFont(setting);
+		
+		lb1_jumju.setFont(setting);
+		lb1_jumName.setFont(setting);
+		lb1_Period.setFont(setting);
+		lb1_Location.setFont(setting);
+		lbTotal.setFont(setting);
+		lbDis.setFont(setting);
+		lbNeed.setFont(setting);
+		lbInput.setFont(setting);
+		lbOutput.setFont(setting);
+		lbMessage.setFont(setting);
+		btnCard	.setFont(setting);	
+		btnCash.setFont(setting);
+		btnData.setFont(setting);
+		
+		
+		for(int i=0; i<btnNumKey.length; i++){
+			btnNumKey[i].setFont(setting);
+		}
+		for(int i=0; i<+btnMenu.length; i++){
+			btnMenu[i].setFont(setting);
+		}
 	}
 
 	private void btn_TypeSetting(String type) {

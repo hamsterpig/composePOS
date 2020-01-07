@@ -198,6 +198,8 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 			rFont03.setSelected(true);
 		} else if(e.getSource()==btnFont04){
 			rFont04.setSelected(true);
+		} else if(e.getSource()==btnAddStaff){
+			btnAddStaff();
 		}
 		
 	} //btnCard, btnCash;

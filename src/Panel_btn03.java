@@ -226,7 +226,7 @@ public class Panel_btn03 extends Panel_btn02{
 		return temp;
 	}
 
-	private int charCount(String target, String s) {
+	protected int charCount(String target, String s) {
 		// TODO Auto-generated method stub
 		int listCnt = 0; // PK Count 특정문자 카운터
 	    int fromIndex = -1;

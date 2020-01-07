@@ -41,7 +41,7 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 	
 	Panel_btn01(){
 
-		
+		pLogo = new JPanel();
 		pa_c_eMenuBar = new JPanel(); // menuBar
 		//pa_c_eMenuBar.setBackground(new Color(255,255,183));
 		pa_c_eMenuBar.setPreferredSize(new Dimension(250,800));
@@ -87,7 +87,7 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		pa_c_nLogin_Line03.add(btnLogin);
 		
 		//pa_c_nLogin.add();
-		pLogo = new JPanel();
+		
 		
 		pa_c_eMenuBar_List = new JPanel();
 		pa_c_eMenuBar_List.setPreferredSize(new Dimension(260,750));
@@ -99,17 +99,17 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		
 		
 		
-		imgLogo = new ImageIcon("D:/PGH/Workspace/compose/src/imgs/yellow_logo.png"); // Logo
+		imgLogo = new ImageIcon("src/imgs/yellow_logo.png"); // Logo
 		ImageIcon setLogo = imageSetSize(imgLogo, 200, 100);
 		lbLogo.setIcon(setLogo);
 		lbLogo.setPreferredSize(new Dimension(200,100));
 		
-		imgLogin = new ImageIcon("D:/PGH/Workspace/compose/src/imgs/composeLogin.jpg");
+		imgLogin = new ImageIcon("src/imgs/composeLogin.jpg");
 		ImageIcon setLogin = imageSetSize(imgLogin, 1280, 800);
 		lbLogin = new JLabel(); // Login img setting ~
 		lbLogin.setIcon(setLogin);
 		
-		imgInformation = new ImageIcon("D:/PGH/Workspace/compose/src/imgs/information.jpg");
+		imgInformation = new ImageIcon("src/imgs/information.jpg");
 		ImageIcon setInformation = imageSetSize(imgInformation, 250, 250);
 		lbInformation = new JLabel();
 		lbInformation.setIcon(setInformation);
@@ -137,8 +137,8 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		btn1 = new JButton("가맹점 정보");
 		btn2 = new JButton("주문");
 		btn3 = new JButton("주문 내역");
-		btn4 = new JButton("통계");
-		btn5 = new JButton("직원");
+		btn4 = new JButton("직원");
+		btn5 = new JButton("관리자");
 		btn6 = new JButton("환경 설정");
 		
 		btnLogout.setPreferredSize(new Dimension(180,50));
