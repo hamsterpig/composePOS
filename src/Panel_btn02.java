@@ -522,7 +522,7 @@ public class Panel_btn02 extends Panel_btn01{
 		} else{
 			lbMessage.setText("결제할 상품이 없습니다.!");
 			lbMessage.setForeground(Color.red);
-		}	
+		}
 	}
 	
 	protected static void btnClear(){

@@ -14,14 +14,14 @@ public class Static_FileInOut {
 		
 	}
 	
-	static String fileRead(String name){
+	static String fileRead(String fileLocation){
 		String temp = "";
-		File file = new File(name); //date
+		File file = new File(fileLocation); //date
 		try{
 			if(!file.exists()){ // file not
-				FileWriter check = new FileWriter(name); // new creat file
+				FileWriter check = new FileWriter(fileLocation); // new creat file
 			} else {
-				FileReader reader = new FileReader(name); // file Open
+				FileReader reader = new FileReader(fileLocation); // file Open
 				BufferedReader in = new BufferedReader(reader);
 				Scanner scan = new Scanner(reader);
 
@@ -35,6 +35,22 @@ public class Static_FileInOut {
 			
 		}
 		return temp;
+	}
+	
+	static void fileWrite_Concat(String fileLocation, String addDB){
+
+		try {
+			String temp = fileRead(fileLocation);
+			temp = temp.concat(addDB);
+			System.out.println(temp);
+			FileWriter write3 = new FileWriter(fileLocation);
+			write3.write(temp);
+			write3.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	

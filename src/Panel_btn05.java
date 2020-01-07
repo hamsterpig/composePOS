@@ -26,16 +26,59 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 public class Panel_btn05 extends Panel_btn04{
-	JPanel pbtn5_s, pbtn5_n, pbtn5_c, pbtn5_e, pbtn5_w; // e
-	Panel_Staff pStaff[];
-	JButton btnAddStaff, btnDelStaff;
-	String staffArray[], staffArraySegment[][];
+	JPanel pbtn5_s, pbtn5_n; // e
+	static JPanel pbtn5_c;
+	JPanel pbtn5_e;
+	JPanel pbtn5_w;
+	
+	static JButton btnAddStaff;
+	JButton btnDelStaff;
+	static String staffArray[];
+	static String staffArraySegment[][];
 	int staffArrayNum, staffArrayNum2;
 	
 	Dialog_AddStaff dialog_AddStaff;
 	
 	
 	Panel_btn05(){
+		
+		pbtn5_s = new JPanel();
+		pbtn5_n = new JPanel();
+		pbtn5_c = new JPanel(new FlowLayout(FlowLayout.LEADING));
+		pbtn5_e = new JPanel();
+		pbtn5_w = new JPanel();
+		
+		pa_c_cManuField_cbtn5.add(pbtn5_s, BorderLayout.PAGE_END);
+		pa_c_cManuField_cbtn5.add(pbtn5_n, BorderLayout.PAGE_START);
+		pa_c_cManuField_cbtn5.add(pbtn5_c, BorderLayout.CENTER);
+		pa_c_cManuField_cbtn5.add(pbtn5_e, BorderLayout.LINE_END);
+		pa_c_cManuField_cbtn5.add(pbtn5_w, BorderLayout.LINE_START);
+		
+		btnAddStaff = new JButton("+");
+		btnAddStaff.addActionListener(this);
+		
+		btnAddStaff.setPreferredSize(new Dimension(183,200));
+		btnAddStaff.setBackground(colorManager.blueLine);
+		btnAddStaff.setFont(new Font("«‘√ ∑’πŸ≈¡", Font.PLAIN, 40));
+		
+		btnDelStaff = new JButton();
+		btnDelStaff.addActionListener(this);
+		btnDelStaff.setPreferredSize(new Dimension(150,80));
+		btnDelStaff.setBackground(colorManager.blueBtn);
+		btnDelStaff.setText("«ÿ∞Ì");
+		pbtn5_s.setPreferredSize(new Dimension(800,100));
+		pbtn5_s.setBackground(colorManager.blueLine);
+		pbtn5_s.add(btnDelStaff);
+		
+		staffRenewal();
+	}
+	
+	public static void staffRenewal() {
+		// TODO Auto-generated method stub
+		pbtn5_c.removeAll();
+		
+		Panel_Staff pStaff[];
+		
 		String staffText = getStaff();
 		int staffArrayNum = charCount(staffText, "\n");
 		staffArray = new String[staffArrayNum];
@@ -57,50 +100,19 @@ public class Panel_btn05 extends Panel_btn04{
 		}
 		
 		
-		
-		
-		pbtn5_s = new JPanel();
-		pbtn5_n = new JPanel();
-		pbtn5_c = new JPanel(new FlowLayout(FlowLayout.LEADING));
-		pbtn5_e = new JPanel();
-		pbtn5_w = new JPanel();
-		
-		pa_c_cManuField_cbtn5.add(pbtn5_s, BorderLayout.PAGE_END);
-		pa_c_cManuField_cbtn5.add(pbtn5_n, BorderLayout.PAGE_START);
-		pa_c_cManuField_cbtn5.add(pbtn5_c, BorderLayout.CENTER);
-		pa_c_cManuField_cbtn5.add(pbtn5_e, BorderLayout.LINE_END);
-		pa_c_cManuField_cbtn5.add(pbtn5_w, BorderLayout.LINE_START);
-		
-		btnAddStaff = new JButton("+");
-		btnAddStaff.addActionListener(this);
-		
-		
 		pStaff = new Panel_Staff[staffArray.length];
 		for(int i=0; i<pStaff.length; i++){
 			pStaff[i] = new Panel_Staff();
 			pbtn5_c.add(pStaff[i]);
-			/*pStaff[i].setLbName("««≤Ù");
-			pStaff[i].setLbStaffNum("º˝¿⁄");*/
-			pbtn5_c.add(btnAddStaff);
-			btnAddStaff.setPreferredSize(new Dimension(183,200));
-			btnAddStaff.setBackground(colorManager.blueLine);
-			btnAddStaff.setFont(new Font("«‘√ ∑’πŸ≈¡", Font.PLAIN, 40));
-			
-			for(int j=0; j<(staffArrayNum2+1); j++){
-				pStaff[i].setLbStaffNum(staffArraySegment[i][0]);
-				pStaff[i].setLbName(staffArraySegment[i][1]);
-				pStaff[i].settxAccumulation(staffArraySegment[i][2]);
+			for(int j=0; j<(staffArrayNum2+1); j++){ // 1/name/memo/00:00
+				pStaff[i].setLbStaffNum(staffArraySegment[i][0]); //setText Name
+				pStaff[i].setLbName(staffArraySegment[i][1]);  // name
+				pStaff[i].setTxMemo(staffArraySegment[i][2]); //memo
+				pStaff[i].settxAccumulation(staffArraySegment[i][3]); //
 			}
 		}
 		
-		btnDelStaff = new JButton();
-		btnDelStaff.addActionListener(this);
-		btnDelStaff.setPreferredSize(new Dimension(150,80));
-		btnDelStaff.setBackground(colorManager.blueBtn);
-		btnDelStaff.setText("«ÿ∞Ì");
-		pbtn5_s.setPreferredSize(new Dimension(800,100));
-		pbtn5_s.setBackground(colorManager.blueLine);
-		pbtn5_s.add(btnDelStaff);
+		pbtn5_c.add(btnAddStaff);
 	}
 	
 	void btnAddStaff(){
@@ -115,7 +127,7 @@ public class Panel_btn05 extends Panel_btn04{
 	
 	
 	
-	private String getStaff() {
+	public static String getStaff() {
 		String temp = "";
 		File file = new File("src/db/staff.txt"); //date
 		try{
@@ -140,7 +152,7 @@ public class Panel_btn05 extends Panel_btn04{
 
 
 
-	class Panel_Staff extends JPanel{
+	static class Panel_Staff extends JPanel{
 		
 		JPanel p_c, p_s, p_n, p_e, p_w;
 		
@@ -149,6 +161,8 @@ public class Panel_btn05 extends Panel_btn04{
 		private JTextField txMemo;
 		private JTextField txAccumulation;
 		JCheckBox rCheck;
+		
+		ColorManager colorManager = ColorManager.getInstance();
 		
 
 		Panel_Staff(){
@@ -202,7 +216,6 @@ public class Panel_btn05 extends Panel_btn04{
 
 		}
 
-
 		public String getLbName() {
 			return lbName.getText();
 		}
@@ -228,6 +241,10 @@ public class Panel_btn05 extends Panel_btn04{
 			this.txMemo.setText(string);
 		}
 	}
+
+
+
+
 	
 
 }
