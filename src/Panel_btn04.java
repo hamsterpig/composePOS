@@ -187,11 +187,13 @@ public class Panel_btn04 extends Panel_btn03{
 			txMemo.setPreferredSize(new Dimension(165,160));
 			txMemo.setBackground(colorManager.blueBg);
 			txMemo.setEditable(false);
+			txMemo.setHorizontalAlignment(txMemo.CENTER);
 			
 			p_s.setPreferredSize(new Dimension(100,25));
 			p_s.add(btnMemo, BorderLayout.CENTER);
 			btnMemo.setPreferredSize(new Dimension(100,25));
 			btnMemo.setBackground(colorManager.blueBg);
+
 
 		}
 

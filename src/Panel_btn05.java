@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -32,7 +33,7 @@ public class Panel_btn05 extends Panel_btn04{
 	JPanel pbtn5_w;
 	
 	static JButton btnAddStaff;
-	JButton btnDelStaff;
+	JButton btnStaffIncome;
 	static String staffArray[];
 	static String staffArraySegment[][];
 	int staffArrayNum, staffArrayNum2;
@@ -67,14 +68,14 @@ public class Panel_btn05 extends Panel_btn04{
 		btnAddStaff.setBackground(colorManager.blueLine);
 		btnAddStaff.setFont(new Font("함초롱바탕", Font.PLAIN, 40));
 		
-		btnDelStaff = new JButton();
-		btnDelStaff.addActionListener(this);
-		btnDelStaff.setPreferredSize(new Dimension(150,80));
-		btnDelStaff.setBackground(colorManager.blueBtn);
-		btnDelStaff.setText("해고");
+		btnStaffIncome = new JButton();
+		btnStaffIncome.addActionListener(this);
+		btnStaffIncome.setPreferredSize(new Dimension(150,80));
+		btnStaffIncome.setBackground(colorManager.blueBtn);
+		btnStaffIncome.setText("정산");
 		pbtn5_s.setPreferredSize(new Dimension(800,100));
 		pbtn5_s.setBackground(colorManager.blueLine);
-		pbtn5_s.add(btnDelStaff);
+		pbtn5_s.add(btnStaffIncome);
 		
 		staffRenewal();
 	}
@@ -233,19 +234,29 @@ public class Panel_btn05 extends Panel_btn04{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			String temp = Static_FileInOut.fileRead("src/db/staff.txt");
-			String temp2;
-			String delString;
+			String tempStaff = getStaff();
+			int checkCNT = charCount(tempStaff, "\n");
 			
-			delString = lbStaffNum.getText()+"/"+lbName.getText()+"/"+txMemo.getText()+"/"+txAccumulation.getText()+"\n";
+			if(checkCNT>1){
+				 int result = JOptionPane.showConfirmDialog(null, lbName.getText()+" <- 정말 해고하시겠습니까?", "해고",
+                         JOptionPane.OK_CANCEL_OPTION);
+				 if(result==0){
+					 String temp = Static_FileInOut.fileRead("src/db/staff.txt");
+						String temp2;
+						String delString;
+						
+						delString = lbStaffNum.getText()+"/"+lbName.getText()+"/"+txMemo.getText()+"/"+txAccumulation.getText()+"\n";
+						
+						temp2 = temp.replaceAll(delString, "");
+						
+						Static_FileInOut.fileWrite("src/db/staff.txt", temp2);
+						
+						staffRenewal();
+				 }
+			} else {
+				JOptionPane.showMessageDialog(null, "최소한 1명의 직원은 있어야 합니다.\n(자신이라도)", "해고 불가!", JOptionPane.WARNING_MESSAGE);
+			}
 			
-			System.out.println("삭제할 문자 -> " + delString);
-			temp2 = temp.replaceAll(delString, "");
-			System.out.println(temp2);
-			
-			Static_FileInOut.fileWrite("src/db/staff.txt", temp2);
-			
-			staffRenewal();
 		}
 	}
 

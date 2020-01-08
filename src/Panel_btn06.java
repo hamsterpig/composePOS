@@ -272,6 +272,8 @@ public class Panel_btn06 extends Panel_btn05{
 		btnCash.setFont(setting);
 		btnData.setFont(setting);
 		
+		title06.setFont(setting);
+		
 		
 		for(int i=0; i<btnNumKey.length; i++){
 			btnNumKey[i].setFont(setting);
@@ -321,6 +323,7 @@ public class Panel_btn06 extends Panel_btn05{
 		for(int i=0; i<btnMenu.length; i++){
 			btnMenu[i].setBackground(btnC);
 		}
+
 		btn1.setBackground(btnC);
 		btn2.setBackground(btnC);
 		btn3.setBackground(btnC);
@@ -332,5 +335,11 @@ public class Panel_btn06 extends Panel_btn05{
 		pad_n_line03.setBackground(lineC);
 		pad_n_line04.setBackground(lineC);
 		pad_n_line05.setBackground(lineC);
+		
+		btnLogin.setBackground(lineC);
+		btnData.setBackground(c);
+		btnStaffIncome.setBackground(c);
+		btnLogout.setBackground(c);
+		pbtn5_s.setBackground(lineC);
 	}
 }

@@ -111,6 +111,7 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 				e1.printStackTrace();
 			} // table
 		} else if(e.getSource()==btn4){
+			staffRenewal_work();
 			viewer(4);
 		} else if(e.getSource()==btn5){
 			viewer(5);
