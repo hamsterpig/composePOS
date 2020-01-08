@@ -76,13 +76,16 @@ public class Dialog_AddStaff extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==btnY){
+			int temp_PK = Static_FileInOut.fileWrite_PK("src/db/staff_PK.txt");
 			String temp = "";
+			temp = temp.concat(temp_PK+"/"); //name
 			temp = temp.concat(txName.getText()+"/"); //name
 			temp = temp.concat(txMemo.getText()+"/"); //memo
 			temp = temp.concat("00:00\n"); //
 			Static_FileInOut.fileWrite_Concat("src/db/staff.txt", temp);
-
 			
+			txName.setText("");
+			txMemo.setText("");
 			Panel_btn05.staffRenewal();
 			
 			this.setVisible(false);

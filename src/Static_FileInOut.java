@@ -52,6 +52,45 @@ public class Static_FileInOut {
 			e.printStackTrace();
 		}
 	}
+	
+	static void fileWrite(String fileLocation, String addDB){
+
+		try {
+			FileWriter write3 = new FileWriter(fileLocation);
+			write3.write(addDB);
+			write3.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	static int fileWrite_PK(String fileLocation){
+		int tempInt = 0;
+		String tempString = "0";
+		Scanner scan;
+		
+		try {
+			try{
+				scan = new Scanner(fileRead(fileLocation));
+				tempInt = (Integer.parseInt(scan.next())+1);
+			} catch(Exception e){
+				tempInt = 0;
+			}
+			
+			FileWriter write3 = new FileWriter(fileLocation);
+			tempString = Integer.toString(tempInt);
+			write3.write(tempString);
+			write3.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return tempInt;
+	}
 
 	
 	

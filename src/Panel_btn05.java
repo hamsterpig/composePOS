@@ -88,7 +88,7 @@ public class Panel_btn05 extends Panel_btn04{
 			staffArray[i] = tempSplit[i];
 		}
 		
-		int staffArrayNum2 = charCount(staffArray[0], "/");
+		int staffArrayNum2 = 3; // 
 		staffArraySegment = new String[staffArrayNum][staffArrayNum2+1];
 		
 		for(int i=0; i<staffArraySegment.length; i++){ // Staff Array[][] Segments Save
@@ -105,7 +105,7 @@ public class Panel_btn05 extends Panel_btn04{
 			pStaff[i] = new Panel_Staff();
 			pbtn5_c.add(pStaff[i]);
 			for(int j=0; j<(staffArrayNum2+1); j++){ // 1/name/memo/00:00
-				pStaff[i].setLbStaffNum(staffArraySegment[i][0]); //setText Name
+				pStaff[i].setLbStaffNum(staffArraySegment[i][0]); //setText PK
 				pStaff[i].setLbName(staffArraySegment[i][1]);  // name
 				pStaff[i].setTxMemo(staffArraySegment[i][2]); //memo
 				pStaff[i].settxAccumulation(staffArraySegment[i][3]); //
@@ -152,7 +152,7 @@ public class Panel_btn05 extends Panel_btn04{
 
 
 
-	static class Panel_Staff extends JPanel{
+	static class Panel_Staff extends JPanel implements ActionListener{
 		
 		JPanel p_c, p_s, p_n, p_e, p_w;
 		
@@ -176,8 +176,9 @@ public class Panel_btn05 extends Panel_btn04{
 			
 			rCheck= new JCheckBox();
 			txMemo = new JTextField();
-			btnMemo = new JButton("메모 편집");
+			btnMemo = new JButton("해고");
 			txAccumulation = new JTextField();
+			btnMemo.addActionListener(this);
 			
 			this.setPreferredSize(new Dimension(183,200));
 			this.setBackground(colorManager.blueBg);
@@ -239,6 +240,23 @@ public class Panel_btn05 extends Panel_btn04{
 		}
 		public void setTxMemo(String string) {
 			this.txMemo.setText(string);
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			String temp = Static_FileInOut.fileRead("src/db/staff.txt");
+			String delString;
+			
+			delString = lbStaffNum.getText()+"/"+lbName.getText()+"/"+txMemo.getText()+"/"+txAccumulation.getText();
+			
+			System.out.println("삭제할 문자 : > " + delString);
+			temp.replaceAll("ㅇㅇ", "@@@@@");
+			System.out.println(temp);
+			
+			Static_FileInOut.fileWrite("src/db/staff.txt", temp);
+			
+			staffRenewal();
 		}
 	}
 
