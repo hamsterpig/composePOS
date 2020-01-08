@@ -84,6 +84,11 @@ public class Dialog_AddStaff extends JDialog implements ActionListener {
 			temp = temp.concat("00:00\n"); //
 			Static_FileInOut.fileWrite_Concat("src/db/staff.txt", temp);
 			
+			String tempTime = Static_FileInOut.fileRead("src/db/staff_Time.txt");
+			tempTime = tempTime.concat("Επ±Ω\n");
+			
+			Static_FileInOut.fileWrite("src/db/staff_Time.txt", tempTime);
+			
 			txName.setText("");
 			txMemo.setText("");
 			Panel_btn05.staffRenewal();

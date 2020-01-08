@@ -33,6 +33,8 @@ public class Panel_btn04 extends Panel_btn03{
 	static String staffArraySegment[][];
 	int staffArrayNum, staffArrayNum2;
 	
+	static Panel_Staff_work pStaff_work[];
+	
 	Panel_btn04(){
 		pa_c_cManuField_cbtn4.add(new JButton("¹öÆ° 4"));
 		
@@ -63,7 +65,7 @@ public class Panel_btn04 extends Panel_btn03{
 		// TODO Auto-generated method stub
 		pbtn4_c.removeAll();
 		
-		Panel_Staff_work pStaff_work[];
+
 		
 		String staffText = getStaff();
 		int staffArrayNum = charCount(staffText, "\n");
@@ -93,13 +95,53 @@ public class Panel_btn04 extends Panel_btn03{
 			for(int j=0; j<(staffArrayNum2+1); j++){ // 1/name/memo/00:00
 				pStaff_work[i].setLbStaffNum(staffArraySegment[i][0]); //setText PK
 				pStaff_work[i].setLbName(staffArraySegment[i][1]);  // name
-				pStaff_work[i].setTxMemo(staffArraySegment[i][2]); //memo
+				//pStaff_work[i].setTxMemo(staffArraySegment[i][2]); //memo
 				pStaff_work[i].settxAccumulation(staffArraySegment[i][3]); //
 			}
 		}
+		
+		setIsWork();
 
 	}
 	
+	private static void setIsWork() {
+		// TODO Auto-generated method stub
+		ColorManager colorManager = ColorManager.getInstance();
+		
+		String tempTime = Static_FileInOut.fileRead("src/db/staff_Time.txt");
+		
+		int cnt = charCount(Static_FileInOut.fileRead("src/db/staff.txt"), "\n");
+		String tempConcat = "";
+		
+		
+		if(charCount(tempTime, "Åð±Ù")<1 && charCount(tempTime, "Ãâ±Ù")<1){
+			for(int i = 0; i<cnt; i++){
+				tempConcat = tempConcat.concat("Åð±Ù\n");
+				tempTime = tempConcat;
+			}
+			Static_FileInOut.fileWrite("src/db/staff_Time.txt", tempTime);
+		} else {
+			
+		}
+		String[] timeSplit;
+		timeSplit = tempTime.split("\n");
+		if(timeSplit.length<1){
+			for(int i=0; i<timeSplit.length; i++){
+				pStaff_work[i].txMemo.setText(timeSplit[i]);
+				
+				if(pStaff_work[i].txMemo.getText().equals("Åð±Ù")){
+					pStaff_work[i].txMemo.setBackground(Color.gray);
+				} else if(pStaff_work[i].txMemo.getText().equals("")){
+					pStaff_work[i].txMemo.setText("Åð±Ù");
+					pStaff_work[i].txMemo.setBackground(Color.gray);
+					System.out.println("ddd");
+				} else if(pStaff_work[i].txMemo.getText().equals("Ãâ±Ù")){
+					pStaff_work[i].txMemo.setBackground(colorManager.blueBg);
+				}
+			}
+		}
+	}
+
 	protected static String getStaff() {
 		// TODO Auto-generated method stub
 		String temp = "";
@@ -185,7 +227,9 @@ public class Panel_btn04 extends Panel_btn03{
 			p_c.setPreferredSize(new Dimension(170,135));
 			p_c.add(txMemo);
 			txMemo.setPreferredSize(new Dimension(165,160));
-			txMemo.setBackground(colorManager.blueBg);
+			txMemo.setBackground(Color.gray);
+			
+			
 			txMemo.setEditable(false);
 			txMemo.setHorizontalAlignment(txMemo.CENTER);
 			
@@ -193,9 +237,13 @@ public class Panel_btn04 extends Panel_btn03{
 			p_s.add(btnMemo, BorderLayout.CENTER);
 			btnMemo.setPreferredSize(new Dimension(100,25));
 			btnMemo.setBackground(colorManager.blueBg);
-
-
+			
+			
+			
+			
 		}
+
+
 
 		public String getLbName() {
 			return lbName.getText();
@@ -225,9 +273,52 @@ public class Panel_btn04 extends Panel_btn03{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
+			String tempTime = Static_FileInOut.fileRead("src/db/staff_Time.txt");
+			
+			int iIndex = 0;
+			for(int i=0; i < pStaff_work.length; i++) {
+			    if(lbStaffNum.getText().equals(pStaff_work[i].lbStaffNum.getText()))
+			    {
+			        iIndex = i;
+			        break;
+			    }
+			}
+			System.out.println(iIndex);
+			
+			String[] tempSplit = tempTime.split("\n");
+			System.out.println(tempSplit.length);
+			
+			if(txMemo.getText().equals("Åð±Ù")){
+				txMemo.setBackground(colorManager.blueBg);
+				tempSplit[iIndex] = tempSplit[iIndex].replace("Åð±Ù", "Ãâ±Ù");
+				txMemo.setText("Ãâ±Ù");
+				String tempConcat = "";
+				for(int i=0; i<pStaff_work.length; i++){
+					
+					tempConcat = tempConcat.concat(tempSplit[i]+"\n");
+					Static_FileInOut.fileWrite("src/db/staff_Time.txt", tempConcat);
+				}
+			} else if(txMemo.getText().equals("Ãâ±Ù")){
+				txMemo.setBackground(Color.gray);
+				tempSplit[iIndex] = tempSplit[iIndex].replace("Ãâ±Ù", "Åð±Ù");
+				txMemo.setText("Åð±Ù");
+				String tempConcat = "";
+				for(int i=0; i<pStaff_work.length; i++){
+					tempConcat = tempConcat.concat(tempSplit[i]+"\n");
+					Static_FileInOut.fileWrite("src/db/staff_Time.txt", tempConcat);
+				}
+			} else {
+				txMemo.setBackground(colorManager.blueBg);
+				tempSplit[iIndex] = tempSplit[iIndex].replace("Åð±Ù", "Ãâ±Ù");
+				txMemo.setText("Ãâ±Ù");
+				String tempConcat = "";
+				for(int i=0; i<pStaff_work.length; i++){
+					
+					tempConcat = tempConcat.concat(tempSplit[i]+"\n");
+					Static_FileInOut.fileWrite("src/db/staff_Time.txt", tempConcat);
+				}
+			}
 		}
 	}
-	
-
-	
 }
+
