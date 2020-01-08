@@ -38,6 +38,12 @@ public class Panel_btn06 extends Panel_btn05{
 		pbtn6_e = new JPanel();
 		pbtn6_w = new JPanel();
 		
+		pbtn6_s.setBackground(Color.white);
+		pbtn6_n.setBackground(Color.white);
+		pbtn6_c.setBackground(Color.white);
+		pbtn6_e.setBackground(Color.white);
+		pbtn6_w.setBackground(Color.white);
+		
 		pa_c_cManuField_cbtn6.add(pbtn6_s, BorderLayout.PAGE_START);
 		pa_c_cManuField_cbtn6.add(pbtn6_n, BorderLayout.PAGE_END);
 		pa_c_cManuField_cbtn6.add(pbtn6_c, BorderLayout.CENTER);
@@ -46,10 +52,9 @@ public class Panel_btn06 extends Panel_btn05{
 		
 		pbtn6_s.setLayout(new FlowLayout(FlowLayout.CENTER));
 		title06 = new JLabel("환경설정");
-		title06.setBackground(Color.yellow);
 		
 		pbtn6_s.add(title06);
-		pbtn6_s.setBackground(Color.yellow);
+		pbtn6_s.setBackground(new Color(255,210,210));
 		
 		lbPColor = new JLabel("테마");
 		rType01 = new JRadioButton();
@@ -127,7 +132,7 @@ public class Panel_btn06 extends Panel_btn05{
 		
 		JPanel lbFontLine = new JPanel();
 		lbFontLine.setPreferredSize(new Dimension(1000, 15));
-		lbFontLine.setBackground(Color.yellow); // will add Color
+		lbFontLine.setBackground(new Color(255,210,210)); // will add Color
 		pbtn6_c.add(lbFontLine);
 		
 		JLabel lbFont = new JLabel("폰트체");

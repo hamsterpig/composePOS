@@ -53,13 +53,12 @@ public class Static_FileInOut {
 		}
 	}
 	
-	static void fileWrite(String fileLocation, String addDB){
+	static void fileWrite(String fileLocation, String data){
 
 		try {
 			FileWriter write3 = new FileWriter(fileLocation);
-			write3.write(addDB);
+			write3.write(data);
 			write3.close();
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

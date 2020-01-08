@@ -1,5 +1,6 @@
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,6 +30,12 @@ public class Panel_btn03 extends Panel_btn02{
 		pbtn3_e = new JPanel();
 		pbtn3_w = new JPanel();
 		
+		pbtn3_s.setBackground(Color.white);
+		pbtn3_n.setBackground(Color.white);
+		pbtn3_c.setBackground(Color.white);
+		pbtn3_e.setBackground(Color.white);
+		pbtn3_w.setBackground(Color.white);
+		
 		pa_c_cManuField_cbtn3.add(pbtn3_s, BorderLayout.PAGE_START);
 		pa_c_cManuField_cbtn3.add(pbtn3_n, BorderLayout.PAGE_END);
 		pa_c_cManuField_cbtn3.add(pbtn3_c, BorderLayout.CENTER);
@@ -43,9 +50,9 @@ public class Panel_btn03 extends Panel_btn02{
 		btnData.setPreferredSize(new Dimension(200,40));
 		btnDataNext.setPreferredSize(new Dimension(80,40));
 		
-		pbtn3_s.add(btnDataPrevious);
+		//pbtn3_s.add(btnDataPrevious);
 		pbtn3_s.add(btnData);
-		pbtn3_s.add(btnDataNext);
+		//pbtn3_s.add(btnDataNext);
 		
 		String[] columnName = {"영수증번호","판매날짜","결제유형","상품개수","상품금액","할인금액","판매금액"}; // table columnName
 		String[][] data = {};
@@ -59,12 +66,12 @@ public class Panel_btn03 extends Panel_btn02{
 		tablePamentList.getColumnModel().getColumn(0).setPreferredWidth(35); // table
 		tablePamentList.getColumnModel().getColumn(1).setPreferredWidth(100);
 		
-		String timeNow;
+/*		String timeNow;
 		SimpleDateFormat formatView = new SimpleDateFormat ( "yyyy년 MM월 dd일"); 	
 		Date time = new Date();
-		timeNow = formatView.format(time);
+		timeNow = formatView.format(time);*/
 		
-		btnData.setText(timeNow);
+		btnData.setText("필터");
 		
 	}
 	

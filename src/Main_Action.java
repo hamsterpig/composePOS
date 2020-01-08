@@ -89,12 +89,14 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 			pa_c_cLogin.setPreferredSize(new Dimension(0,400));
 			pa_c_eMenuBar.setVisible(true);
 			pa_c_cManuField.setVisible(true);
+			pLogin_LineAllJPanel.setVisible(false);
 	
 		} else if(e.getSource()==btnLogout) { // Logout
 			pa_c_cLogin.setVisible(true);
 			pa_c_cLogin.setPreferredSize(new Dimension(260,400));
 			pa_c_eMenuBar.setVisible(false);
 			pa_c_cManuField.setVisible(false);
+			pLogin_LineAllJPanel.setVisible(true);
 
 		} else if(e.getSource()==btn1){
 			viewer(1);

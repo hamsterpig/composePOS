@@ -38,8 +38,11 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 
 	ImageIcon imgLogo, imgLogin, imgInformation;
 	
+	JPanel pLogin_LineAllJPanel;
+	
 	
 	Panel_btn01(){
+		
 
 		pLogo = new JPanel();
 		pa_c_eMenuBar = new JPanel(); // menuBar
@@ -55,9 +58,20 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		this.setPreferredSize(new Dimension(1280,800));
 		setResizable(false);
 		
+		pLogin_LineAllJPanel = new JPanel();
+		pLogin_LineAllJPanel.setPreferredSize(new Dimension(260,900));
+		JPanel pLogin_Space01 = new JPanel();
+		pLogin_Space01.setPreferredSize(new Dimension(250,300));
+		pLogin_LineAllJPanel.setOpaque(false);
+		pLogin_Space01.setOpaque(false);
+		
 		pa_c_cLogin = new JPanel(new FlowLayout());
 		pa_c_cLogin.setPreferredSize(new Dimension(260,400));
-		pa_c.add(pa_c_cLogin, BorderLayout.LINE_END);
+		
+		pLogin_LineAllJPanel.add(pLogin_Space01);
+		pLogin_LineAllJPanel.add(pa_c_cLogin);
+		pa_c.add(pLogin_LineAllJPanel, BorderLayout.LINE_END);
+	
 		
 		pa_c.add(pa_c_eMenuBar,BorderLayout.LINE_START);
 		pa_c.add(pa_c_cManuField, BorderLayout.CENTER);
@@ -80,8 +94,14 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		pa_c_nLogin_Line02.add(lbPass);
 		pa_c_nLogin_Line02.add(txPass);
 		
+		lbID.setFont(fontManager.yun_BOLD_18);
+		lbPass.setFont(fontManager.yun_BOLD_18);
+		
 		btnLogin = new JButton("Login");
 		btnLogout = new JButton("Logout");
+		btnLogin.setBackground(colorManager.blueLine);
+		btnLogin.setFont(fontManager.yun_BOLD_18);
+		btnLogin.setPreferredSize(new Dimension(260,50));
 		btnLogin.addActionListener(this);
 		btnLogout.addActionListener(this);
 		pa_c_nLogin_Line03.add(btnLogin);
@@ -290,6 +310,7 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		pa_c_cManuField_cbtn4.setVisible(false);
 		pa_c_cManuField_cbtn5.setVisible(false);
 		pa_c_cManuField_cbtn6.setVisible(false);
+
 		switch(n){
 		case 1: pa_c_cManuField_cbtn1.setVisible(true); break;
 		case 2: pa_c_cManuField_cbtn2.setVisible(true); break;

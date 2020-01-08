@@ -56,6 +56,14 @@ public class Panel_btn02 extends Panel_btn01{
 		pbtn02_c = new JPanel();
 		pbtn02_w = new JPanel();
 		pbtn02_e = new JPanel();
+
+		pbtn02_nc.setBackground(Color.white);
+		pbtn02_s.setBackground(Color.white);
+		pbtn02_n.setBackground(Color.white);
+		pbtn02_c.setBackground(Color.white);
+		pbtn02_w.setBackground(Color.white);
+		pbtn02_e.setBackground(Color.white);
+		
 		pa_c_cManuField_cbtn2.setLayout(new BorderLayout());
 		pa_c_cManuField_cbtn2.add(pbtn02_s, BorderLayout.PAGE_END);
 		pbtn02_nc.add(pbtn02_n, BorderLayout.PAGE_START);

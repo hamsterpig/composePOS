@@ -48,6 +48,12 @@ public class Panel_btn05 extends Panel_btn04{
 		pbtn5_e = new JPanel();
 		pbtn5_w = new JPanel();
 		
+		pbtn5_s.setBackground(Color.white);
+		pbtn5_n.setBackground(Color.white);
+		pbtn5_c.setBackground(Color.white);
+		pbtn5_e.setBackground(Color.white);
+		pbtn5_w.setBackground(Color.white);
+		
 		pa_c_cManuField_cbtn5.add(pbtn5_s, BorderLayout.PAGE_END);
 		pa_c_cManuField_cbtn5.add(pbtn5_n, BorderLayout.PAGE_START);
 		pa_c_cManuField_cbtn5.add(pbtn5_c, BorderLayout.CENTER);
@@ -126,30 +132,6 @@ public class Panel_btn05 extends Panel_btn04{
 	}
 	
 	
-	
-	public static String getStaff() {
-		String temp = "";
-		File file = new File("src/db/staff.txt"); //date
-		try{
-			if(!file.exists()){ // file not
-				FileWriter check = new FileWriter("src/db/staff.txt"); // new creat file
-			} else {
-				FileReader reader = new FileReader("src/db/staff.txt"); // file Open
-				BufferedReader in = new BufferedReader(reader);
-				Scanner scan = new Scanner(reader);
-
-					String string;
-				    while ((string = in.readLine()) != null) {
-				    	temp = temp.concat(string+"\n");
-				    	//System.out.println(string);
-				      }
-				} 
-		} catch(IOException e){
-			
-		}
-		return temp;
-	}
-
 
 
 	static class Panel_Staff extends JPanel implements ActionListener{
@@ -170,7 +152,12 @@ public class Panel_btn05 extends Panel_btn04{
 			p_s = new JPanel(new BorderLayout());
 			p_n = new JPanel();
 			p_e = new JPanel();
-			p_w = new JPanel();;
+			p_w = new JPanel();
+			p_c.setBackground(Color.white);
+			p_s.setBackground(Color.white);
+			p_n.setBackground(Color.white);
+			p_e.setBackground(Color.white);
+			p_w.setBackground(Color.white);
 			
 			JButton btnMemo;
 			
@@ -209,6 +196,7 @@ public class Panel_btn05 extends Panel_btn04{
 			txMemo.setPreferredSize(new Dimension(165,160));
 			txMemo.setBackground(colorManager.blueBg);
 			txMemo.setEditable(false);
+			txMemo.setHorizontalAlignment(txMemo.CENTER);
 			
 			p_s.setPreferredSize(new Dimension(100,25));
 			p_s.add(btnMemo, BorderLayout.CENTER);
@@ -246,15 +234,16 @@ public class Panel_btn05 extends Panel_btn04{
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			String temp = Static_FileInOut.fileRead("src/db/staff.txt");
+			String temp2;
 			String delString;
 			
-			delString = lbStaffNum.getText()+"/"+lbName.getText()+"/"+txMemo.getText()+"/"+txAccumulation.getText();
+			delString = lbStaffNum.getText()+"/"+lbName.getText()+"/"+txMemo.getText()+"/"+txAccumulation.getText()+"\n";
 			
-			System.out.println("삭제할 문자 : > " + delString);
-			temp.replaceAll("ㅇㅇ", "@@@@@");
-			System.out.println(temp);
+			System.out.println("삭제할 문자 -> " + delString);
+			temp2 = temp.replaceAll(delString, "");
+			System.out.println(temp2);
 			
-			Static_FileInOut.fileWrite("src/db/staff.txt", temp);
+			Static_FileInOut.fileWrite("src/db/staff.txt", temp2);
 			
 			staffRenewal();
 		}
