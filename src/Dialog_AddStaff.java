@@ -86,8 +86,11 @@ public class Dialog_AddStaff extends JDialog implements ActionListener {
 			
 			String tempTime = Static_FileInOut.fileRead("src/db/staff_Time.txt");
 			tempTime = tempTime.concat("Επ±Ω\n");
-			
 			Static_FileInOut.fileWrite("src/db/staff_Time.txt", tempTime);
+			
+			String tempToday = Static_FileInOut.fileRead("src/db/staff_Today.txt");
+			tempToday = tempToday.concat("00:00");
+			Static_FileInOut.fileWrite("src/db/staff_Today.txt", tempToday);
 			
 			txName.setText("");
 			txMemo.setText("");

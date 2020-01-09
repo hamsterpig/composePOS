@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -122,6 +123,12 @@ public class Panel_btn02 extends Panel_btn01{
 			btnMenu[i].addActionListener(this);
 		}
 		
+/*		ImageIcon choco = new ImageIcon("src/imgs/espresso.png");
+		JLabel lbIcon = new JLabel();
+		lbIcon.setIcon(imageSetSize(choco,130,80));
+		btnMenu[0].add(lbIcon);*/
+		
+		
 		JPanel pad = new JPanel(new BorderLayout()); // panel btn02 pad
 		pbtn02_w.add(pad);
 		pad.setPreferredSize(new Dimension(300,780));
@@ -220,6 +227,9 @@ public class Panel_btn02 extends Panel_btn01{
 			btnNumKey[i].setBackground(new Color(255,153,102));
 			btnNumKey[i].addActionListener(this);
 		}
+		
+
+		
 		btnNumKey[10].setText("00");
 		btnAllClear.addActionListener(this);
 		btnDisPer.addActionListener(this);

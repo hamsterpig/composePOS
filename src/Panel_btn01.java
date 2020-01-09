@@ -293,7 +293,7 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		pack();
 		setLocationRelativeTo(null);
 	}
-	private ImageIcon imageSetSize(ImageIcon icon, int i, int j) { // image Size Setting
+	protected ImageIcon imageSetSize(ImageIcon icon, int i, int j) { // image Size Setting
 		// TODO Auto-generated method stub
 		Image ximg = icon.getImage();  //ImageIcon을 Image로 변환.
 		Image yimg = ximg.getScaledInstance(i, j, java.awt.Image.SCALE_SMOOTH);

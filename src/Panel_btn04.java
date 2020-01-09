@@ -3,7 +3,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -11,16 +10,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.border.Border;
 
 
 public class Panel_btn04 extends Panel_btn03{
@@ -96,7 +94,7 @@ public class Panel_btn04 extends Panel_btn03{
 				pStaff_work[i].setLbStaffNum(staffArraySegment[i][0]); //setText PK
 				pStaff_work[i].setLbName(staffArraySegment[i][1]);  // name
 				//pStaff_work[i].setTxMemo(staffArraySegment[i][2]); //memo
-				pStaff_work[i].settxAccumulation(staffArraySegment[i][3]); //
+				//pStaff_work[i].settxAccumulation(staffArraySegment[i][3]); //
 			}
 		}
 		
@@ -110,9 +108,11 @@ public class Panel_btn04 extends Panel_btn03{
 		
 		String tempTime = Static_FileInOut.fileRead("src/db/staff_Time.txt");
 		
+		
 		int cnt = charCount(Static_FileInOut.fileRead("src/db/staff.txt"), "\n");
 		String tempConcat = "";
-		String[] timeSplit;
+		String[] timeSplit = null;
+		String[] todaySplit;
 		
 		if(charCount(tempTime, "Åð±Ù")<1 && charCount(tempTime, "Ãâ±Ù")<0 ||
 				charCount(tempTime, "Åð±Ù")<0 && charCount(tempTime, "Ãâ±Ù")<1){
@@ -125,13 +125,15 @@ public class Panel_btn04 extends Panel_btn03{
 			
 		}
 		
+
+		
 		if(pStaff_work.length<1){
 			timeSplit = tempTime.split("!@#$\n");
 		} else if((pStaff_work.length>=1)){
 			timeSplit = tempTime.split("\n");
 			
 			if(timeSplit.length<1){
-				System.out.println(timeSplit.length);
+				//System.out.println(timeSplit.length);
 				
 			} else if(timeSplit.length>=1) {
 				for(int i=0; i<timeSplit.length; i++){
@@ -142,10 +144,46 @@ public class Panel_btn04 extends Panel_btn03{
 					} else if(pStaff_work[i].txMemo.getText().equals("")){
 						pStaff_work[i].txMemo.setText("Åð±Ù");
 						pStaff_work[i].txMemo.setBackground(Color.gray);
-						System.out.println("ddd");
 					} else if(pStaff_work[i].txMemo.getText().equals("Ãâ±Ù")){
 						pStaff_work[i].txMemo.setBackground(colorManager.blueBg);
 					}
+				}
+			}
+		}
+		
+		String tempTime2 = Static_FileInOut.fileRead("src/db/staff_Today.txt");
+		if(charCount(tempTime2, ":")<1){
+			for(int i = 0; i<cnt; i++){
+				tempConcat = tempConcat.concat("00:00\n");
+				tempTime2 = tempConcat;
+			}
+			Static_FileInOut.fileWrite("src/db/staff_Today.txt", tempTime2);
+		} else {
+			
+		}
+		
+		if(pStaff_work.length<1){
+			todaySplit = tempTime2.split("!@#$\n");
+		} else if((pStaff_work.length>=1)){
+			todaySplit = tempTime2.split("\n");
+			
+			if(todaySplit.length<1){
+				//System.out.println(timeSplit.length);
+				
+			} else if(todaySplit.length>=1) {
+				for(int i=0; i<todaySplit.length; i++){		
+					if(todaySplit[i].equals("00:00")){
+						pStaff_work[i].txAccumulation.setText("¹ÌÃâ±Ù");
+						pStaff_work[i].txAccumulation.setBackground(colorManager.redBg);
+					} else if(timeSplit[i].equals("Åð±Ù")){
+						pStaff_work[i].txAccumulation.setText("¹ÌÃâ±Ù");
+						pStaff_work[i].txAccumulation.setBackground(colorManager.redBg);
+						System.out.println("dd");
+					} else {
+						pStaff_work[i].txAccumulation.setText(todaySplit[i]);
+						pStaff_work[i].txAccumulation.setBackground(colorManager.greenBg);
+					}
+					
 				}
 			}
 		}
@@ -170,7 +208,6 @@ public class Panel_btn04 extends Panel_btn03{
 					String string;
 				    while ((string = in.readLine()) != null) {
 				    	temp = temp.concat(string+"\n");
-				    	//System.out.println(string);
 				      }
 				} 
 		} catch(IOException e){
@@ -289,7 +326,7 @@ public class Panel_btn04 extends Panel_btn03{
 		}
 
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
+		public void actionPerformed(ActionEvent arg0) { // btn Ãâ±Ù/Åð±Ù
 			// TODO Auto-generated method stub
 			String tempTime = Static_FileInOut.fileRead("src/db/staff_Time.txt");
 			
@@ -301,16 +338,15 @@ public class Panel_btn04 extends Panel_btn03{
 			        break;
 			    }
 			}
-			System.out.println(iIndex);
 			
 			String[] tempSplit = tempTime.split("\n");
-			System.out.println(tempSplit.length);
 			
 			if(txMemo.getText().equals("Åð±Ù")){
 				txMemo.setBackground(colorManager.blueBg);
 				tempSplit[iIndex] = tempSplit[iIndex].replace("Åð±Ù", "Ãâ±Ù");
 				txMemo.setText("Ãâ±Ù");
 				String tempConcat = "";
+				txAccumulation.setBackground(colorManager.greenBg);
 				for(int i=0; i<pStaff_work.length; i++){
 					
 					tempConcat = tempConcat.concat(tempSplit[i]+"\n");
@@ -321,6 +357,7 @@ public class Panel_btn04 extends Panel_btn03{
 				tempSplit[iIndex] = tempSplit[iIndex].replace("Ãâ±Ù", "Åð±Ù");
 				txMemo.setText("Åð±Ù");
 				String tempConcat = "";
+				txAccumulation.setBackground(colorManager.redBg);
 				for(int i=0; i<pStaff_work.length; i++){
 					tempConcat = tempConcat.concat(tempSplit[i]+"\n");
 					Static_FileInOut.fileWrite("src/db/staff_Time.txt", tempConcat);
@@ -329,6 +366,7 @@ public class Panel_btn04 extends Panel_btn03{
 				txMemo.setBackground(colorManager.blueBg);
 				tempSplit[iIndex] = tempSplit[iIndex].replace("Åð±Ù", "Ãâ±Ù");
 				txMemo.setText("Ãâ±Ù");
+				txAccumulation.setBackground(colorManager.greenBg);
 				String tempConcat = "";
 				for(int i=0; i<pStaff_work.length; i++){
 					
@@ -336,6 +374,30 @@ public class Panel_btn04 extends Panel_btn03{
 					Static_FileInOut.fileWrite("src/db/staff_Time.txt", tempConcat);
 				}
 			}
+			
+			if(txMemo.getText().equals("Ãâ±Ù")){
+				String timeNow;
+				SimpleDateFormat formatView = new SimpleDateFormat ( "hh:mm");
+				Date time = new Date();
+				timeNow = formatView.format(time);
+				
+				String tempToday = Static_FileInOut.fileRead("src/db/staff_Today.txt");
+				String todaySplit[] = tempToday.split("\n");
+				
+				todaySplit[iIndex] = timeNow;
+				String todayConcat = "";
+				for(int i=0; i<todaySplit.length; i++){
+					todayConcat = todayConcat.concat(todaySplit[i]+"\n");
+				}
+				Static_FileInOut.fileWrite("src/db/staff_Today.txt", todayConcat);
+				txAccumulation.setText(timeNow);
+			} else if(txMemo.getText().equals("Åð±Ù")) {
+				
+			}
+
+			
+			
+			
 		}
 	}
 }

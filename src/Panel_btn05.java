@@ -202,7 +202,7 @@ public class Panel_btn05 extends Panel_btn04{
 			p_s.setPreferredSize(new Dimension(100,25));
 			p_s.add(btnMemo, BorderLayout.CENTER);
 			btnMemo.setPreferredSize(new Dimension(100,25));
-			btnMemo.setBackground(colorManager.blueBg);
+			btnMemo.setBackground(colorManager.redLine);
 
 		}
 
@@ -275,7 +275,25 @@ public class Panel_btn05 extends Panel_btn04{
 					}
 					
 					Static_FileInOut.fileWrite("src/db/staff_Time.txt", tempReplace);
-	
+					//
+					
+					temp =  Static_FileInOut.fileRead("src/db/staff_Today.txt");
+					String tempSplit2[] = temp.split("\n");
+					
+					tempSplit2[index] = "";
+
+					for(int i=index; i<tempSplit2.length-1;i++){
+						tempSplit2[i] = tempSplit2[i+1];
+					}
+					
+					String tempReplace2 ="";
+					for(int i=0; i<tempSplit2.length-1;i++){
+						tempReplace2 = tempReplace2.concat(tempSplit2[i]+"\n");
+					}
+					
+					Static_FileInOut.fileWrite("src/db/staff_Today.txt", tempReplace2);
+					
+					
 						
 					staffRenewal();
 				 }
