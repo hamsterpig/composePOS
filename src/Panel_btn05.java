@@ -270,8 +270,8 @@ public class Panel_btn05 extends Panel_btn04{
 					}
 					
 					String tempReplace ="";
-					for(int i=0; i<tempSplit.length;i++){
-						tempReplace = tempReplace.concat(tempSplit[i]);
+					for(int i=0; i<tempSplit.length-1;i++){
+						tempReplace = tempReplace.concat(tempSplit[i]+"\n");
 					}
 					
 					Static_FileInOut.fileWrite("src/db/staff_Time.txt", tempReplace);

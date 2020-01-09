@@ -28,9 +28,8 @@ public class Static_FileInOut {
 					String string;
 				    while ((string = in.readLine()) != null) {
 				    	temp = temp.concat(string+"\n");
-				    	//System.out.println(string);
 				      }
-				} 
+				}
 		} catch(IOException e){
 			
 		}
@@ -42,7 +41,6 @@ public class Static_FileInOut {
 		try {
 			String temp = fileRead(fileLocation);
 			temp = temp.concat(addDB);
-			System.out.println(temp);
 			FileWriter write3 = new FileWriter(fileLocation);
 			write3.write(temp);
 			write3.close();
