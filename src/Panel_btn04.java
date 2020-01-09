@@ -112,9 +112,10 @@ public class Panel_btn04 extends Panel_btn03{
 		
 		int cnt = charCount(Static_FileInOut.fileRead("src/db/staff.txt"), "\n");
 		String tempConcat = "";
+		String[] timeSplit;
 		
-		
-		if(charCount(tempTime, "Åð±Ù")<1 && charCount(tempTime, "Ãâ±Ù")<1){
+		if(charCount(tempTime, "Åð±Ù")<1 && charCount(tempTime, "Ãâ±Ù")<0 ||
+				charCount(tempTime, "Åð±Ù")<0 && charCount(tempTime, "Ãâ±Ù")<1){
 			for(int i = 0; i<cnt; i++){
 				tempConcat = tempConcat.concat("Åð±Ù\n");
 				tempTime = tempConcat;
@@ -123,23 +124,35 @@ public class Panel_btn04 extends Panel_btn03{
 		} else {
 			
 		}
-		String[] timeSplit;
-		timeSplit = tempTime.split("\n");
-		if(timeSplit.length<1){
-			for(int i=0; i<timeSplit.length; i++){
-				pStaff_work[i].txMemo.setText(timeSplit[i]);
+		
+		if(pStaff_work.length<1){
+			timeSplit = tempTime.split("!@#$\n");
+		} else if((pStaff_work.length>=1)){
+			timeSplit = tempTime.split("\n");
+			
+			if(timeSplit.length<1){
+				System.out.println(timeSplit.length);
 				
-				if(pStaff_work[i].txMemo.getText().equals("Åð±Ù")){
-					pStaff_work[i].txMemo.setBackground(Color.gray);
-				} else if(pStaff_work[i].txMemo.getText().equals("")){
-					pStaff_work[i].txMemo.setText("Åð±Ù");
-					pStaff_work[i].txMemo.setBackground(Color.gray);
-					System.out.println("ddd");
-				} else if(pStaff_work[i].txMemo.getText().equals("Ãâ±Ù")){
-					pStaff_work[i].txMemo.setBackground(colorManager.blueBg);
+			} else if(timeSplit.length>=1) {
+				for(int i=0; i<timeSplit.length; i++){
+					pStaff_work[i].txMemo.setText(timeSplit[i]);
+					
+					if(pStaff_work[i].txMemo.getText().equals("Åð±Ù")){
+						pStaff_work[i].txMemo.setBackground(Color.gray);
+					} else if(pStaff_work[i].txMemo.getText().equals("")){
+						pStaff_work[i].txMemo.setText("Åð±Ù");
+						pStaff_work[i].txMemo.setBackground(Color.gray);
+						System.out.println("ddd");
+					} else if(pStaff_work[i].txMemo.getText().equals("Ãâ±Ù")){
+						pStaff_work[i].txMemo.setBackground(colorManager.blueBg);
+					}
 				}
 			}
 		}
+		
+		
+		
+
 	}
 
 	protected static String getStaff() {
@@ -243,7 +256,12 @@ public class Panel_btn04 extends Panel_btn03{
 			
 		}
 
-
+		public String txMemo(){
+			return this.txMemo.getText();
+		}
+		public String lbStaffNum(){
+			return this.lbStaffNum.getText();
+		}
 
 		public String getLbName() {
 			return lbName.getText();

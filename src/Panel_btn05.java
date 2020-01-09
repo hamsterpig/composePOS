@@ -234,6 +234,9 @@ public class Panel_btn05 extends Panel_btn04{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
+			
+			staffRenewal_work();
+			
 			String tempStaff = getStaff();
 			int checkCNT = charCount(tempStaff, "\n");
 			
@@ -241,17 +244,40 @@ public class Panel_btn05 extends Panel_btn04{
 				 int result = JOptionPane.showConfirmDialog(null, lbName.getText()+" <- 정말 해고하시겠습니까?", "해고",
                          JOptionPane.OK_CANCEL_OPTION);
 				 if(result==0){
-					 String temp = Static_FileInOut.fileRead("src/db/staff.txt");
-						String temp2;
-						String delString;
+					String temp = Static_FileInOut.fileRead("src/db/staff.txt");
+					String temp2;
+					String delString;
 						
-						delString = lbStaffNum.getText()+"/"+lbName.getText()+"/"+txMemo.getText()+"/"+txAccumulation.getText()+"\n";
+					delString = lbStaffNum.getText()+"/"+lbName.getText()+"/"+txMemo.getText()+"/"+txAccumulation.getText()+"\n";
+					temp2 = temp.replaceAll(delString, "");
+					Static_FileInOut.fileWrite("src/db/staff.txt", temp2);
 						
-						temp2 = temp.replaceAll(delString, "");
+					temp =  Static_FileInOut.fileRead("src/db/staff_Time.txt");
+					String tempSplit[] = temp.split("\n");
+					
+					int index = 0;
+					for(int i=0; i<tempSplit.length; i++){
+						if(lbStaffNum.getText().equals(pStaff_work[i].getLbStaffNum())){
+							index = i;
+							break;
+						}
+					}
+					
+					tempSplit[index] = "";
+
+					for(int i=index; i<tempSplit.length-1;i++){
+						tempSplit[i] = tempSplit[i+1];
+					}
+					
+					String tempReplace ="";
+					for(int i=0; i<tempSplit.length;i++){
+						tempReplace = tempReplace.concat(tempSplit[i]);
+					}
+					
+					Static_FileInOut.fileWrite("src/db/staff_Time.txt", tempReplace);
+	
 						
-						Static_FileInOut.fileWrite("src/db/staff.txt", temp2);
-						
-						staffRenewal();
+					staffRenewal();
 				 }
 			} else {
 				JOptionPane.showMessageDialog(null, "최소한 1명의 직원은 있어야 합니다.\n(자신이라도)", "해고 불가!", JOptionPane.WARNING_MESSAGE);
