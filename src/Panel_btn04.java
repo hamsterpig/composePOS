@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -178,7 +180,6 @@ public class Panel_btn04 extends Panel_btn03{
 					} else if(timeSplit[i].equals("퇴근")){
 						pStaff_work[i].txAccumulation.setText("미출근");
 						pStaff_work[i].txAccumulation.setBackground(colorManager.redBg);
-						System.out.println("dd");
 					} else {
 						pStaff_work[i].txAccumulation.setText(todaySplit[i]);
 						pStaff_work[i].txAccumulation.setBackground(colorManager.greenBg);
@@ -227,9 +228,6 @@ public class Panel_btn04 extends Panel_btn03{
 		JCheckBox rCheck;
 		
 		ColorManager colorManager = ColorManager.getInstance();
-		
-		
-		
 
 		Panel_Staff_work(){
 			p_c = new JPanel();
@@ -341,6 +339,9 @@ public class Panel_btn04 extends Panel_btn03{
 			
 			String[] tempSplit = tempTime.split("\n");
 			
+			String tempToday = Static_FileInOut.fileRead("src/db/staff_Today.txt");
+			String todaySplit[] = tempToday.split("\n");
+			
 			if(txMemo.getText().equals("퇴근")){
 				txMemo.setBackground(colorManager.blueBg);
 				tempSplit[iIndex] = tempSplit[iIndex].replace("퇴근", "출근");
@@ -351,7 +352,84 @@ public class Panel_btn04 extends Panel_btn03{
 					
 					tempConcat = tempConcat.concat(tempSplit[i]+"\n");
 					Static_FileInOut.fileWrite("src/db/staff_Time.txt", tempConcat);
+				} 
+				
+				//---- Calculation
+				DateFormat dFormat = new SimpleDateFormat("hh:mm");
+				Date dData = null;
+			
+				try {
+					dData = dFormat.parse(todaySplit[iIndex]);
+
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				
+
+				Date nowData =  new Date();
+				String tempData = dFormat.format(nowData);
+				try {
+					nowData = dFormat.parse(tempData);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Date test = new Date();
+				Date resultDate = new Date(nowData.getTime() - dData.getTime());
+				String tempData2 = dFormat.format(resultDate);
+
+				int minuteInt = (int) ((dData.getTime() - nowData.getTime()) * -1 / 60000);
+				int hourInt = minuteInt / 60;
+				minuteInt %= 60;
+				
+		
+				String saveSDate = String.format("%02d:%02d", hourInt, minuteInt);
+				
+				//todaySplit[iIndex] = saveSDate;
+				String tempTodayConcat = "";
+				
+				// sava Location
+				String tempStaff = Static_FileInOut.fileRead("src/db/staff.txt");
+				String[] tempStaffSplit = tempStaff.split("\n");
+				
+				String[] tempStaffSplit2 = tempStaffSplit[iIndex].split("/");
+				
+				String outTime = tempStaffSplit2[3];
+				
+				
+				// outTime saveSDate
+				Date ac1 = null;
+				try {
+					ac1 = dFormat.parse(outTime);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Date ac2 = null;
+				try {
+					ac2 = dFormat.parse(saveSDate);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				int minuteInt2 = (int) ((ac1.getTime() + ac2.getTime()) * -1 / 60000);
+				System.out.println(minuteInt2);
+				
+				int hourInt2 = minuteInt2 / 60;
+				minuteInt2 %= 60;
+				
+		
+				String saveSDate2 = String.format("%02d:%02d", minuteInt2, hourInt2);
+				
+				//System.out.println(saveSDate2);
+				// 게산값 구해서  tempStaffSplit2[3]; 에 삽입 후 저장
+				
+
+				
+				
+				
 			} else if(txMemo.getText().equals("출근")){
 				txMemo.setBackground(Color.gray);
 				tempSplit[iIndex] = tempSplit[iIndex].replace("출근", "퇴근");
@@ -381,9 +459,6 @@ public class Panel_btn04 extends Panel_btn03{
 				Date time = new Date();
 				timeNow = formatView.format(time);
 				
-				String tempToday = Static_FileInOut.fileRead("src/db/staff_Today.txt");
-				String todaySplit[] = tempToday.split("\n");
-				
 				todaySplit[iIndex] = timeNow;
 				String todayConcat = "";
 				for(int i=0; i<todaySplit.length; i++){
@@ -399,6 +474,9 @@ public class Panel_btn04 extends Panel_btn03{
 			
 			
 		}
+
+
+
 	}
 }
 
