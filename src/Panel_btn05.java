@@ -49,11 +49,11 @@ public class Panel_btn05 extends Panel_btn04{
 		pbtn5_e = new JPanel();
 		pbtn5_w = new JPanel();
 		
-		pbtn5_s.setBackground(Color.white);
-		pbtn5_n.setBackground(Color.white);
-		pbtn5_c.setBackground(Color.white);
-		pbtn5_e.setBackground(Color.white);
-		pbtn5_w.setBackground(Color.white);
+		pbtn5_s.setBackground(new Color(200,200,200));
+		pbtn5_n.setBackground(new Color(200,200,200));
+		pbtn5_c.setBackground(new Color(200,200,200));
+		pbtn5_e.setBackground(new Color(200,200,200));
+		pbtn5_w.setBackground(new Color(200,200,200));
 		
 		pa_c_cManuField_cbtn5.add(pbtn5_s, BorderLayout.PAGE_END);
 		pa_c_cManuField_cbtn5.add(pbtn5_n, BorderLayout.PAGE_START);
@@ -154,11 +154,11 @@ public class Panel_btn05 extends Panel_btn04{
 			p_n = new JPanel();
 			p_e = new JPanel();
 			p_w = new JPanel();
-			p_c.setBackground(Color.white);
-			p_s.setBackground(Color.white);
-			p_n.setBackground(Color.white);
-			p_e.setBackground(Color.white);
-			p_w.setBackground(Color.white);
+			p_c.setBackground(new Color(200,200,200));
+			p_s.setBackground(new Color(200,200,200));
+			p_n.setBackground(new Color(200,200,200));
+			p_e.setBackground(new Color(200,200,200));
+			p_w.setBackground(new Color(200,200,200));
 			
 			JButton btnMemo;
 			

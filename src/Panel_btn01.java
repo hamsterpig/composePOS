@@ -23,8 +23,12 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 	
 	JPanel pa_c_eMenuBar, pa_c_cManuField, pa_c_eMenuBar_List, pLogo;
 	JPanel pa_c_cLogin;
-	JPanel pa_c_cManuField_cbtn1, pa_c_cManuField_cbtn2,pa_c_cManuField_cbtn3,
-		pa_c_cManuField_cbtn4,pa_c_cManuField_cbtn5,pa_c_cManuField_cbtn6;
+	static JPanel pa_c_cManuField_cbtn1;
+	static JPanel pa_c_cManuField_cbtn2;
+	static JPanel pa_c_cManuField_cbtn3;
+	static JPanel pa_c_cManuField_cbtn4;
+	static JPanel pa_c_cManuField_cbtn5;
+	static JPanel pa_c_cManuField_cbtn6;
 	JPanel pa_c_cManuField_cbtn1_c, pa_c_cManuField_cbtn1_w, pa_c_cManuField_cbtn1_e, //btn1 S N C E W
 		pa_c_cManuField_cbtn1_n, pa_c_cManuField_cbtn1_s;
 	JPanel pbtn02_s, pbtn02_n, pbtn02_c, pbtn02_w, pbtn02_e, pbtn02_nc;
@@ -59,14 +63,14 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		setResizable(false);
 		
 		pLogin_LineAllJPanel = new JPanel();
-		pLogin_LineAllJPanel.setPreferredSize(new Dimension(260,900));
+		pLogin_LineAllJPanel.setPreferredSize(new Dimension(450,900));
 		JPanel pLogin_Space01 = new JPanel();
 		pLogin_Space01.setPreferredSize(new Dimension(250,300));
 		pLogin_LineAllJPanel.setOpaque(false);
 		pLogin_Space01.setOpaque(false);
 		
 		pa_c_cLogin = new JPanel(new FlowLayout());
-		pa_c_cLogin.setPreferredSize(new Dimension(260,400));
+		pa_c_cLogin.setPreferredSize(new Dimension(360,400));
 		
 		pLogin_LineAllJPanel.add(pLogin_Space01);
 		pLogin_LineAllJPanel.add(pa_c_cLogin);
@@ -88,11 +92,18 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		txID = new JTextField(16);
 		pa_c_nLogin_Line01.add(lbID);
 		pa_c_nLogin_Line01.add(txID);
+		JLabel spaceLogin_Line01 = new JLabel();
+		spaceLogin_Line01.setPreferredSize(new Dimension(100,20));
+		pa_c_nLogin_Line01.add(spaceLogin_Line01);
 		
 		lbPass = new JLabel("비밀번호");
 		txPass = new JTextField(16);
 		pa_c_nLogin_Line02.add(lbPass);
 		pa_c_nLogin_Line02.add(txPass);
+		
+		JLabel spaceLogin_Line02 = new JLabel();
+		spaceLogin_Line02.setPreferredSize(new Dimension(100,20));
+		pa_c_nLogin_Line02.add(spaceLogin_Line02);
 		
 		lbID.setFont(fontManager.yun_BOLD_18);
 		lbPass.setFont(fontManager.yun_BOLD_18);
@@ -149,6 +160,9 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		pa_c_nLogin_Line01.setOpaque(false);
 		pa_c_nLogin_Line02.setOpaque(false);
 		pa_c_nLogin_Line03.setOpaque(false); // end
+		JLabel spaceLogin_Line03 = new JLabel();
+		spaceLogin_Line03.setPreferredSize(new Dimension(100,20));
+		pa_c_nLogin_Line03.add(spaceLogin_Line03);
 		
 		
 		pa_c_eMenuBar.add(pLogo);
@@ -302,7 +316,7 @@ public class Panel_btn01 extends FrameD implements ActionListener{
 		return xyimg;
 	}
 	
-	public void viewer(int n) {
+	public static void viewer(int n) {
 		// TODO Auto-generated method stub
 		pa_c_cManuField_cbtn1.setVisible(false);
 		pa_c_cManuField_cbtn2.setVisible(false);

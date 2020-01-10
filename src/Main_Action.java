@@ -10,9 +10,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 public class Main_Action extends Panel_btn06 implements ActionListener{
+	Dialog_Admin dialog_admin;
 		
 		
 	Main_Action(){
@@ -20,8 +22,30 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 		String fontSetting = getFontSetting();
 		setThemeType(colorSetting);
 		setFontType(fontSetting);
+		
+		String checkID = Static_FileInOut.fileRead("src/db/admin_ID.txt");
+		String checkPASS = Static_FileInOut.fileRead("src/db/admin_PASS.txt");
+		
+		setting_Admin(checkID, checkPASS);
+		
+		
+		
 	}
 	
+
+	private void setting_Admin(String id, String pass) {
+		// TODO Auto-generated method stub
+		if(id.equals("")){
+			String defaultID = "admin";
+			Static_FileInOut.fileWrite("src/db/admin_ID.txt", defaultID);
+		}
+		
+		if(pass.equals("")){
+			String defaultID = "123";
+			Static_FileInOut.fileWrite("src/db/admin_PASS.txt", defaultID);
+		}
+	}
+
 
 	private String getFontSetting() {
 		// TODO Auto-generated method stub
@@ -85,15 +109,27 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==btnLogin){ // Login
-			pa_c_cLogin.setVisible(false);
-			pa_c_cLogin.setPreferredSize(new Dimension(0,400));
-			pa_c_eMenuBar.setVisible(true);
-			pa_c_cManuField.setVisible(true);
-			pLogin_LineAllJPanel.setVisible(false);
+			String checkID = Static_FileInOut.fileRead("src/db/admin_ID.txt");
+			String checkPASS = Static_FileInOut.fileRead("src/db/admin_PASS.txt");
+
+			if(txID.getText().equals("admin")){
+				if(txPass.getText().equals("123")){
+					pa_c_cLogin.setVisible(false);
+					pa_c_cLogin.setPreferredSize(new Dimension(0,400));
+					pa_c_eMenuBar.setVisible(true);
+					pa_c_cManuField.setVisible(true);
+					pLogin_LineAllJPanel.setVisible(false);
+				} else {
+					JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 틀렸습니다!", "접근 불가", JOptionPane.WARNING_MESSAGE);
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 틀렸습니다!", "접근 불가", JOptionPane.WARNING_MESSAGE);
+			}
+			
 	
 		} else if(e.getSource()==btnLogout) { // Logout
 			pa_c_cLogin.setVisible(true);
-			pa_c_cLogin.setPreferredSize(new Dimension(260,400));
+			pa_c_cLogin.setPreferredSize(new Dimension(450,400));
 			pa_c_eMenuBar.setVisible(false);
 			pa_c_cManuField.setVisible(false);
 			pLogin_LineAllJPanel.setVisible(true);
@@ -114,7 +150,14 @@ public class Main_Action extends Panel_btn06 implements ActionListener{
 			staffRenewal_work();
 			viewer(4);
 		} else if(e.getSource()==btn5){
-			viewer(5);
+			if(dialog_admin==null){
+				dialog_admin = new Dialog_Admin();
+				dialog_admin.setVisible(true);
+
+			} else{
+				dialog_admin.setVisible(true);
+			}
+			//viewer(5);
 		} else if(e.getSource()==btn6){
 			viewer(6);
 		} else if(e.getSource()==btnMenu[0]){ // add Menu Plus Price

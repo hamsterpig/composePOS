@@ -15,6 +15,8 @@ public class FrameD extends JFrame{
 	
 	FrameD(){
 		
+		setTitle("POS");
+		
 		pa = new JPanel(new BorderLayout());
 		pa_c = new JPanel(new BorderLayout());
 		pa_n = new JPanel();
