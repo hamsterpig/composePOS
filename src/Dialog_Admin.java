@@ -83,6 +83,8 @@ public class Dialog_Admin extends JDialog implements ActionListener {
 		if(e.getSource()==btnY){
 			if(txID_Check.getText().equals("admin")){
 				if(txPass_Check.getText().equals("123")){
+					txID_Check.setText("");
+					txPass_Check.setText("");
 					Panel_btn01.viewer(5);
 					setVisible(false);
 				} else {
